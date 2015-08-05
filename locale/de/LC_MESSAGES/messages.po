@@ -1,26 +1,22 @@
 # translation of messages.po to deutsch
-# GOsa2 Translations
-# Copyright (C) 2003 GONICUS GmbH, Germany
-# This file is distributed under the same license as the GOsa2 package.
+# gosa-plugin-mailaddress Translations
+# Copyright (C) 2015 Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+# This file is distributed under the same license as the gosa-plugin-mailaddress package.
 #
 #
-# Alfred Schroeder <schroeder@GONICUS.de>, 2004.
-# Cajus Pollmeier <pollmeier@gonicus.de>, 2004, 2005, 2006, 2008.
-# Jan Wenzel <jan.wenzel@gonicus.de>, 2004,2005, 2008.
-# Stefan Koehler <stefan.koehler@GONICUS.de>, 2005.
+# Mike Gabriel <mike.gabriel@das-netzwerkteam.de>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-05 18:52+0200\n"
 "PO-Revision-Date: 2010-09-17 08:53+0100\n"
-"Last-Translator: Fabian Hickert <Fabian.Hickert@GONICUS.DE>\n"
+"Last-Translator: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>\n"
 "Language-Team: deutsch <de@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: personal/mailaddress/class_mailAccount.inc:37
 #: personal/mailaddress/class_mailAccount.inc:113
