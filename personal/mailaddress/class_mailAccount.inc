@@ -2,7 +2,7 @@
 /*! 
   \brief   mail plugin
   \author  Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
-  \version UNRELEASED
+  \version 0.99.1
   \date    2015.08.04
 
   This class provides basic information on mail accounts. This plugin
