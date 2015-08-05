@@ -228,7 +228,7 @@ class mailAccount extends plugin
     plugin::save();
 
     $this->attrs['mail'] = $this->mail;
-    $this->attrs['gosaMailServer'] = $this->gosaMailserver;
+    $this->attrs['gosaMailServer'] = $this->gosaMailServer;
     $this->attrs['gosaMailDeliveryMode'] = $this->gosaMailDeliveryMode;
 
     /* Save data to LDAP */
