@@ -1,37 +1,13 @@
-# translation of messages.po to deutsch
-# GOsa2 Translations
-# Copyright (C) 2003 GONICUS GmbH, Germany
-# This file is distributed under the same license as the GOsa2 package.
-#
-#
-# Alfred Schroeder <schroeder@GONICUS.de>, 2004.
-# Cajus Pollmeier <pollmeier@gonicus.de>, 2004, 2005, 2006, 2008.
-# Jan Wenzel <jan.wenzel@gonicus.de>, 2004,2005, 2008.
-# Stefan Koehler <stefan.koehler@GONICUS.de>, 2005.
-msgid ""
-msgstr ""
-"Project-Id-Version: messages\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-05 18:52+0200\n"
-"PO-Revision-Date: 2010-09-17 08:53+0100\n"
-"Last-Translator: Fabian Hickert <Fabian.Hickert@GONICUS.DE>\n"
-"Language-Team: deutsch <de@li.org>\n"
-"Language: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-
 #: personal/mailaddress/class_mailAccount.inc:37
 #: personal/mailaddress/class_mailAccount.inc:113
 #: personal/mailaddress/copypaste.tpl:1 personal/mailaddress/copypaste.tpl:3
 #: personal/mailaddress/copypaste.tpl:5
 msgid "Mail Address"
-msgstr "Mail-Adresse"
+msgstr "Mail Address"
 
 #: personal/mailaddress/class_mailAccount.inc:38
 msgid "Manage user mail address"
-msgstr "Mailadressen von Benutzern verwalten"
+msgstr "Manage user mail address"
 
 #: personal/mailaddress/class_mailAccount.inc:119
 #: personal/mailaddress/class_mailAccount.inc:121
@@ -42,7 +18,7 @@ msgstr "Mail"
 #: personal/mailaddress/class_mailAccount.inc:208
 #: personal/mailaddress/class_mailAccount.inc:240
 msgid "LDAP error"
-msgstr "LDAP-Fehler"
+msgstr "LDAP error"
 
 #: personal/mailaddress/class_mailAccount.inc:279
 #: personal/mailaddress/class_mailAccount.inc:281
@@ -52,35 +28,35 @@ msgstr "LDAP-Fehler"
 #: personal/mailaddress/class_mailAccount.inc:379
 #: personal/mailaddress/generic.tpl:7 personal/mailaddress/generic.tpl:9
 msgid "Mail address"
-msgstr "Mail-Adresse"
+msgstr "Mail address"
 
 #: personal/mailaddress/class_mailAccount.inc:279
 msgid "Examples"
-msgstr "Beispiele"
+msgstr "Examples"
 
 #: personal/mailaddress/class_mailAccount.inc:279
 msgid "or"
-msgstr "oder"
+msgstr "or"
 
 #: personal/mailaddress/class_mailAccount.inc:304
 #, php-format
 msgid "Address is already in use by group '%s'."
-msgstr "Die Adresse wird bereits von der Gruppe '%s' verwendet."
+msgstr "Address is already in use by group '%s'."
 
 #: personal/mailaddress/class_mailAccount.inc:306
 #, php-format
 msgid "Address is already in use by user '%s'."
-msgstr "Die Adresse wird bereits von Benutzer '%s' verwendet."
+msgstr "Address is already in use by user '%s'."
 
 #: personal/mailaddress/class_mailAccount.inc:366
 #: personal/mailaddress/generic.tpl:5
 msgid "User Mail Address"
-msgstr "Mail-Adresse des Benutzers"
+msgstr "User Mail Address"
 
 #: personal/mailaddress/class_mailAccount.inc:370
 msgid "My account"
-msgstr "Mein Konto"
+msgstr "My account"
 
 #: personal/mailaddress/generic.tpl:1
 msgid "Mail Address Settings"
-msgstr "e-Mail Einstellungen"
+msgstr "Mail Address Settings"
