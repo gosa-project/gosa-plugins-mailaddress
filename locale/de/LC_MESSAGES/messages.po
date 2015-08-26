@@ -10,13 +10,14 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 21:28+0200\n"
-"PO-Revision-Date: 2010-09-17 08:53+0100\n"
+"PO-Revision-Date: 2015-08-26 21:59+0100\n"
 "Last-Translator: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>\n"
 "Language-Team: deutsch <de@li.org>\n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #: admin/groups/mailaddress/class_groupMail.inc:94
 #: admin/groups/mailaddress/class_groupMail.inc:96
@@ -64,7 +65,9 @@ msgstr "Mail-Adresse"
 
 #: admin/groups/mailaddress/class_groupMail.inc:153
 msgid "Cannot add primary address to the list of forwarders!"
-msgstr "Die Primäre e-Mail Addresse kann nicht zur Liste der Weiterleitungen hinzugefügt werden!"
+msgstr ""
+"Die Primäre e-Mail Addresse kann nicht zur Liste der Weiterleitungen "
+"hinzugefügt werden!"
 
 #: admin/groups/mailaddress/class_groupMail.inc:195
 #: personal/mailaddress/class_mailAccount.inc:309
@@ -115,8 +118,7 @@ msgid ""
 "Please make use of the {%cn} placeholder for the group part of the mail "
 "address."
 msgstr ""
-"Bitte den {%cn} Platzhalter für den Gruppenteil der e-Mail Adresse "
-"verwenden."
+"Bitte den {%cn} Platzhalter für den Gruppenteil der e-Mail Adresse verwenden."
 
 #: admin/groups/mailaddress/mailaddress.tpl:1
 #: admin/groups/mailaddress/paste_mailaddress.tpl:1
@@ -140,8 +142,8 @@ msgid ""
 "Please specify a mail address pattern (e.g., {ldelim}%cn{rdelim}@your-domain."
 "com) or leave empty."
 msgstr ""
-"Bitte ein e-Mail Adressschema eingeben (z.Bsp. {ldelim}%cn{rdelim}@your-domain."
-"com) oder das Feld frei lassen."
+"Bitte ein e-Mail Adressschema eingeben (z.Bsp. {ldelim}%cn{rdelim}@your-"
+"domain.com) oder das Feld frei lassen."
 
 #: admin/groups/mailaddress/mailaddress.tpl:42
 #: admin/groups/mailaddress/paste_mailaddress.tpl:26
