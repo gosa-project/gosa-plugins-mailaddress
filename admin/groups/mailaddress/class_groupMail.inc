@@ -27,8 +27,6 @@ class mailgroup extends plugin
 
     var $uid = "";
     var $cn ="";
-    var $orig_cn = "";
-    var $show_effective_memeber = FALSE;
 
     function __construct (&$config, $dn= NULL, $base_object= NULL)
     {
@@ -43,7 +41,6 @@ class mailgroup extends plugin
                 $this->$attr = $this->attrs[$attr][0];
             }
         }
-        $this->orig_cn = $this->uid = $this->cn;
 
         /* Remember account status
          */
