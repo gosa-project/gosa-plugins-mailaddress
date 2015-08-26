@@ -412,9 +412,15 @@ class mailAccount extends plugin
       if(!$this->is_account && $this->acl_is_createable()){
           $this->is_account= TRUE;
       }
+    } else {
+      $mail = $this->mail;
     }
 
     plugin::set_multi_edit_values($attrs);
+
+    if(!$mail_pattern){
+      $this->mail
+    }
   }
 
 
