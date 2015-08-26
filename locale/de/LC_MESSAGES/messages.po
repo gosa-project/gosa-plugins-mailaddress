@@ -138,7 +138,7 @@ msgid ""
 "Please specify a mail address pattern (e.g., &#123;%cn&#124;@your-domain."
 "com) or leave empty."
 msgstr ""
-"Bitte ein Mail-Adressschema eingeben (z.Bsp. &#123;%cn&#124;@your-domain."
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. {%cn}@your-domain."
 "com) oder das Feld frei lassen."
 
 #: admin/groups/mailaddress/mailaddress.tpl:42
@@ -228,15 +228,11 @@ msgid "Mail addresses"
 msgstr "Mail-Adresse"
 
 #: personal/mailaddress/generic.tpl:21
-#, fuzzy
 msgid ""
 "Please specify a mail address pattern (e.g., &#123;%uid&#124;@your-domain."
 "com). Valid placeholders are: &#123;%uid&#124;, &#123;%givenName&#124; and "
 "&#123;%sn&#124;."
 msgstr ""
-"Bitte ein Mail-Adressschema eingeben (z.Bsp. &#123;%uid&#124;@your-"
-"domain.com). Gültige Platzhalter sind: &#123;%uid&#124;, "
-"&#123;%givenName&#124; und &#123;%sn&#124;."
-
-#~ msgid "Permissions"
-#~ msgstr "Berechtigungen"
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. {%uid}@your-"
+"domain.com). Gültige Platzhalter sind: {%uid}, "
+"{%givenName} und {%sn}."
