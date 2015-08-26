@@ -18,15 +18,6 @@
    <h3>{t}User Mail Addresses{/t}</h3>
    <table summary="{t}Mail addresses{/t}">
     <tr>
-    <td colspan="2">{t}You are about to replace the below mail addresses for the selected users{/t}
-      <ul>
-      {foreach from=$multi_mail item=this_mail}
-       <li><b>{$this_mail}</b></li>
-      {/foreach}
-      </ul>
-    </td>
-    </tr>
-    <tr>
     <td colspan="2"><i>{t}Please specify a mail address pattern (e.g., {ldelim}%uid{rdelim}@your-domain.com). Valid placeholders are: {ldelim}%uid{rdelim}, {ldelim}%givenName{rdelim} and {ldelim}%sn{rdelim}.{/t}</i>
     </td>
     </tr>
