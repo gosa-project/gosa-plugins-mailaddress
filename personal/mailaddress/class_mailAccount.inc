@@ -378,13 +378,11 @@ class mailAccount extends plugin
     /* Mail address checks */
     $mail_pattern = $this->mail;
 
-    if (empty($mail_pattern)){
-      $message[]= msgPool::required(_("Mail address pattern"))."<br><br><b>"._("Examples").":</b> <i>{%givenName}.{%sn}@your-domain.com</i> "._("or")." <i>{%uid}@your-domain.com</i>";
+    if (!empty($mail_pattern)){
+        if ((!tests::is_email($mail_pattern, TRUE)) || (!preg_match('/^.*({%uid}|{%givenName}|{%sn}|{%cn}).*@.*$/i', $mail_pattern))){
+          $message[]= msgPool::invalid(_("Mail address pattern"),"","","{%givenName}.{%sn}@your-domain.com")."<br><br><br>"._("Please make use of placeholders for the user part of the mail address.");
+        }
     }
-    if ((!tests::is_email($mail_pattern, TRUE)) || (!preg_match('/^.*({%uid}|{%givenName}|{%sn}|{%cn}).*@.*$/i', $mail_pattern))){
-      $message[]= msgPool::invalid(_("Mail address pattern"),"","","{%givenName}.{%sn}@your-domain.com")."<br><br><br>"._("Please make use of placeholders for the user part of the mail address.");
-    }
-
     return($message);
   }
 
@@ -400,18 +398,20 @@ class mailAccount extends plugin
     /* Replace placeholders in mail address patterns */
     $mail_pattern = $attrs['mail'];
 
-    foreach (array("sn", "givenName", "uid") as $repl){
-      $value= $this->$repl;
-      if (preg_match("/{%$repl}/", $mail_pattern)){
-        $attrs['mail']= str_replace("{%$repl}", $value, $mail_pattern);
-        $mail_pattern=$attrs['mail'];
+    if($mail_pattern){
+      foreach (array("sn", "givenName", "uid") as $repl){
+        $value= $this->$repl;
+        if (preg_match("/{%$repl}/", $mail_pattern)){
+          $attrs['mail']= str_replace("{%$repl}", $value, $mail_pattern);
+          $mail_pattern=$attrs['mail'];
+        }
       }
-    }
 
-    /* Add mail account data, if object is not in account state, yet
-     */
-    if(!$this->is_account && $this->acl_is_createable()){
-        $this->is_account= TRUE;
+      /* Add mail account data, if object is not in account state, yet
+       */
+      if(!$this->is_account && $this->acl_is_createable()){
+          $this->is_account= TRUE;
+      }
     }
 
     plugin::set_multi_edit_values($attrs);

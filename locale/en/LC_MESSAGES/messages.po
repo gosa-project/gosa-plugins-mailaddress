@@ -4,7 +4,7 @@
 #: personal/mailaddress/class_mailAccount.inc:120
 #: personal/mailaddress/class_mailAccount.inc:122
 #: personal/mailaddress/class_mailAccount.inc:375
-#: personal/mailaddress/class_mailAccount.inc:420
+#: personal/mailaddress/class_mailAccount.inc:426
 msgid "Mail"
 msgstr "Mail"
 
@@ -37,7 +37,7 @@ msgstr "Please select an entry!"
 #: personal/mailaddress/class_mailAccount.inc:291
 #: personal/mailaddress/class_mailAccount.inc:295
 #: personal/mailaddress/class_mailAccount.inc:313
-#: personal/mailaddress/class_mailAccount.inc:434
+#: personal/mailaddress/class_mailAccount.inc:440
 #: personal/mailaddress/generic.tpl:7 personal/mailaddress/generic.tpl:9
 msgid "Mail address"
 msgstr "Mail address"
@@ -79,8 +79,7 @@ msgstr "Forwarding addresses"
 
 #: admin/groups/mailaddress/class_groupMail.inc:533
 #: admin/groups/mailaddress/mailaddress.tpl:27
-#: personal/mailaddress/class_mailAccount.inc:382
-#: personal/mailaddress/class_mailAccount.inc:385
+#: personal/mailaddress/class_mailAccount.inc:383
 #: personal/mailaddress/generic.tpl:26
 msgid "Mail address pattern"
 msgstr "Mail address pattern"
@@ -116,8 +115,8 @@ msgid ""
 "Please specify a mail address pattern (e.g., &#123;%cn&#124;@your-domain."
 "com) or leave empty."
 msgstr ""
-"Please specify a mail address pattern (e.g., {%cn}@your-domain."
-"com) or leave empty."
+"Please specify a mail address pattern (e.g., {%cn}@your-domain.com) or leave "
+"empty."
 
 #: admin/groups/mailaddress/mailaddress.tpl:42
 #: admin/groups/mailaddress/paste_mailaddress.tpl:26
@@ -171,25 +170,23 @@ msgid "Manage user mail address"
 msgstr "Manage user mail address"
 
 #: personal/mailaddress/class_mailAccount.inc:283
-#: personal/mailaddress/class_mailAccount.inc:382
 msgid "Examples"
 msgstr "Examples"
 
 #: personal/mailaddress/class_mailAccount.inc:283
-#: personal/mailaddress/class_mailAccount.inc:382
 msgid "or"
 msgstr "or"
 
-#: personal/mailaddress/class_mailAccount.inc:385
+#: personal/mailaddress/class_mailAccount.inc:383
 msgid "Please make use of placeholders for the user part of the mail address."
 msgstr "Please make use of placeholders for the user part of the mail address."
 
-#: personal/mailaddress/class_mailAccount.inc:421
+#: personal/mailaddress/class_mailAccount.inc:427
 #: personal/mailaddress/generic.tpl:6
 msgid "User Mail Address"
 msgstr "User Mail Address"
 
-#: personal/mailaddress/class_mailAccount.inc:425
+#: personal/mailaddress/class_mailAccount.inc:431
 msgid "My account"
 msgstr "My account"
 
@@ -209,8 +206,9 @@ msgstr "Mail addresses"
 msgid ""
 "Please specify a mail address pattern (e.g., &#123;%uid&#124;@your-domain."
 "com). Valid placeholders are: &#123;%uid&#124;, &#123;%givenName&#124; and "
-"&#123;%sn&#124;."
+"&#123;%sn&#124;. For no action on the users' mail addresses, please leave "
+"empty."
 msgstr ""
-"Please specify a mail address pattern (e.g., {%uid}@your-"
-"domain.com). Valid placeholders are: {%uid}, "
-"{%givenName} and {%sn}."
+"Please specify a mail address pattern (e.g., {%uid}@your-domain.com). Valid "
+"placeholders are: {%uid}, {%givenName} and {%sn}. For no action on the "
+"users' mail addresses, please leave empty."

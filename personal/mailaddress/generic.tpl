@@ -18,7 +18,7 @@
    <h3>{t}User Mail Addresses{/t}</h3>
    <table summary="{t}Mail addresses{/t}">
     <tr>
-    <td colspan="2"><i>{t}Please specify a mail address pattern (e.g., &#123;%uid&#124;@your-domain.com). Valid placeholders are: &#123;%uid&#124;, &#123;%givenName&#124; and &#123;%sn&#124;.{/t}</i>
+    <td colspan="2"><i>{t}Please specify a mail address pattern (e.g., &#123;%uid&#124;@your-domain.com). Valid placeholders are: &#123;%uid&#124;, &#123;%givenName&#124; and &#123;%sn&#124;. For no action on the users' mail addresses, please leave empty.{/t}</i>
     </td>
     </tr>
     <tr><td>&nbsp;</td></tr>
