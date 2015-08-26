@@ -12,7 +12,7 @@
   
   This plugin actually breaks gosa-mail-account and is intended to be a
   drop-in replacement for it in situations where it is only necessary
-  to store information in inetOrgPerson's mail LDAP attribute description.
+  to store information in inetOrgPerson''s mail LDAP attribute description.
 
 Functions :
 
@@ -41,7 +41,7 @@ class mailAccount extends plugin
   var $initially_was_account = FALSE;
 
   /* GOsa mail attributes */
-  var $mail                               = "";
+  var $mail           = "";
 
   /* GOsa mail account attributes filled with dummy values,
    * required due to gosaMailAccount objectclass requirements.
@@ -212,7 +212,7 @@ class mailAccount extends plugin
       msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, get_class()));
     }
 
-    /* Optionally execute a command after we're done */
+    /* Optionally execute a command after we are done */
     $this->handle_post_events("remove",array("uid" => $this->uid));
   }
 
@@ -251,7 +251,7 @@ class mailAccount extends plugin
       new log("create","users/".get_class($this),$this->dn,array_keys($this->attrs),$ldap->get_error());
     }
 
-    /* Optionally execute a command after we're done */
+    /* Optionally execute a command after we are done */
     if ($this->initially_was_account == $this->is_account){
       if ($this->is_modified){
         $this->handle_post_events("modify", array("uid" => $this->uid));
