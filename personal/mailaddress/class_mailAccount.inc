@@ -285,6 +285,7 @@ class mailAccount extends plugin
         $message[]= msgPool::required(_("Mail address"));
       }
     }
+
     if ($this->is_template){
       if (!tests::is_email($mail, TRUE)){
         $message[]= msgPool::invalid(_("Mail address"),"","","{%givenName}.{%sn}@your-domain.com");
