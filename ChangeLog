@@ -1,0 +1,138 @@
+2015-08-27 01:14:17 +0200 Mike Gabriel (bada7ec)
+
+	* release 0.99.4 (HEAD, master)
+
+2015-08-27 01:16:50 +0200 Mike Gabriel (cbc1f9b)
+
+	* pre-release white-space cleanup
+
+2015-08-27 01:10:26 +0200 Mike Gabriel (27d803c)
+
+	* update i18n
+
+2015-08-27 01:01:03 +0200 Mike Gabriel (f926e25)
+
+	* empty mail field on multi-edits: Remember objects' former mail
+          addresses and reinstate them after
+          plugin::set_multi_edit_values() has been called.
+          (origin/master)
+
+2015-08-27 00:53:54 +0200 Mike Gabriel (cf29954)
+
+	* class_groupMail: Only set object into is_account state, if a mail
+          pattern is provided.
+
+2015-08-27 00:48:00 +0200 Mike Gabriel (c969f70)
+
+	* class_mailAccount: On multi-edit actions, interprete an empty mail
+          pattern as no action to take on mail address fields.
+
+2015-08-27 00:44:17 +0200 Mike Gabriel (a7cb30d)
+
+	* object creation on multi-edits: If mailaddress object is not yet in
+          account state, set it into that state on multi-edit
+          actions.
+
+2015-08-27 00:21:54 +0200 Mike Gabriel (257294b)
+
+	* smarty-gettext obviously does not render html entities, using curly
+          braces in translations instead
+
+2015-08-27 00:03:24 +0200 Mike Gabriel (9c30df8)
+
+	* .tpl files: Replace smarty tags {ldelim} and {rdelim} by the
+          corresponding html entities to fix gettext translations.
+
+2015-08-26 23:10:10 +0200 Mike Gabriel (17f7985)
+
+	* class_groupMail.inc: Drop translation for acl property. Not needed
+          in gosa-plugin-mailaddress.
+
+2015-08-26 22:52:11 +0200 Mike Gabriel (e463331)
+
+	* de.po: Rework translation of mail everywhere (e-Mail -> Mail).
+
+2015-08-26 22:43:35 +0200 Mike Gabriel (a7f3b68)
+
+	* class_groupMail.inc: Clean variable declarartions.
+
+2015-08-26 22:35:54 +0200 Mike Gabriel (8fb474f)
+
+	* class_groupMail.inc: Make sure that sanity checks on entered mail
+          addresses actually happen.
+
+2015-08-26 21:59:49 +0200 Mike Gabriel (aa95ba9)
+
+	* de.po: Fix line wrappeing (via poedit).
+
+2015-08-26 21:47:26 +0200 Mike Gabriel (771cbf4)
+
+	* de.po: Typo fix.
+
+2015-08-26 21:39:37 +0200 Mike Gabriel (36b7b1b)
+
+	* update locale
+
+2015-08-26 21:39:28 +0200 Mike Gabriel (55d6fee)
+
+	* Drop the idea of listing mails about to be changed with mailAccount
+          multi-edit.
+
+2015-08-26 21:38:43 +0200 Mike Gabriel (492d71e)
+
+	* paste_mailaddress.tpl: Rephrase translatable strings, drop "Add
+          local" button.
+
+2015-08-26 20:50:35 +0200 Mike Gabriel (19c366d)
+
+	* initial draft of a groupMail mail address plugin
+
+2015-08-26 16:21:56 +0200 Mike Gabriel (7a64e2c)
+
+	* line break added
+
+2015-08-26 16:21:46 +0200 Mike Gabriel (f840553)
+
+	* some hightlighting fixes for mcedit in comments
+
+2015-08-26 16:20:45 +0200 Mike Gabriel (23ab94e)
+
+	* mailAccount: Add multi-edit support.
+
+2015-08-05 20:34:48 +0200 Mike Gabriel (bc3d0e4)
+
+	* release 0.99.3 (tag: 0.99.3, gh/master)
+
+2015-08-05 20:01:05 +0200 Mike Gabriel (b6233e5)
+
+	* Fix typo (gosaMailserver -> gosaMailServer).
+
+2015-08-05 19:59:46 +0200 Mike Gabriel (8ba90bd)
+
+	* update header of German locale file
+
+2015-08-05 19:11:46 +0200 Mike Gabriel (e295862)
+
+	* release 0.99.2 (tag: 0.99.2)
+
+2015-08-05 19:10:55 +0200 Mike Gabriel (810faaa)
+
+	* Add COPYING file (GPL-2+).
+
+2015-08-05 19:10:41 +0200 Mike Gabriel (281cc8b)
+
+	* Drop all images obtained from gosa-plugin-mail, none is needed for
+          this minimal plugin.
+
+2015-08-05 18:51:49 +0200 Mike Gabriel (fce4476)
+
+	* release 0.99.1 (tag: 0.99.1)
+
+2015-08-05 18:55:58 +0200 Mike Gabriel (d57f84c)
+
+	* update localization (en, de)
+
+2015-08-05 18:50:13 +0200 Mike Gabriel (0faee72)
+
+	* initial version
+
