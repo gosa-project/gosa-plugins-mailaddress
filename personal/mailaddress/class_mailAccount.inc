@@ -56,6 +56,7 @@ class mailAccount extends plugin
       "gosaMailDeliveryMode",
   );
   var $objectclasses= array("gosaMailAccount");
+  var $multiple_support = TRUE;
 
   var $uid = "";
   var $cn  = "";
@@ -143,9 +144,12 @@ class mailAccount extends plugin
       $smarty->assign($attr,set_post($this->$attr));
     }
 
+    $smarty->assign("multiple_support",$this->multiple_support_active);
+    if($this->multiple_support-active){
+      $smarty->assign("multi_mail",array_slice($this->multi_attrs_all['mail'],1));
+    }
     return($display.$smarty->fetch(get_template_path("generic.tpl",TRUE,dirname(__FILE__))));
   }
-
 
 
   /* Save data to object */
@@ -356,6 +360,56 @@ class mailAccount extends plugin
           $this->mail = get_post('mail');
       }
   }
+
+  function multiple_execute()
+  {
+    return($this->execute());
+  }
+
+  function multiple_check()
+  {
+    $message = plugin::multiple_check();
+
+    if(empty($this->gosaMailServer) && in_array_strict("gosaMailServer",$this->multi_boxes)){
+      $message[]= msgPool::noserver(_("Mail"));
+    }
+
+    /* Mail address checks */
+    $mail_pattern = $this->mail;
+
+    if (empty($mail_pattern)){
+      $message[]= msgPool::required(_("Mail address pattern"))."<br><br><b>"._("Examples").":</b> <i>{%givenName}.{%sn}@your-domain.com</i> "._("or")." <i>{%uid}@your-domain.com</i>";
+    }
+    if ((!tests::is_email($mail_pattern, TRUE)) || (!preg_match('/^.*({%uid}|{%givenName}|{%sn}|{%cn}).*@.*$/i', $mail_pattern))){
+      $message[]= msgPool::invalid(_("Mail address pattern"),"","","{%givenName}.{%sn}@your-domain.com")."<br><br><br>"._("Please make use of placeholders for the user part of the mail address.");
+    }
+
+    return($message);
+  }
+
+  function get_multi_edit_values()
+  {
+    $ret = plugin::get_multi_edit_values();
+    $ret['mail'] = $this->mail;
+    return $ret;
+  }
+
+  function set_multi_edit_values($attrs)
+  {
+    /* Replace placeholders in mail address patterns */
+    $mail_pattern = $attrs['mail'];
+
+    foreach (array("sn", "givenName", "uid") as $repl){
+      $value= $this->$repl;
+      if (preg_match("/{%$repl}/", $mail_pattern)){
+        $attrs['mail']= str_replace("{%$repl}", $value, $mail_pattern);
+        $mail_pattern=$attrs['mail'];
+      }
+    }
+
+    plugin::set_multi_edit_values($attrs);
+  }
+
 
   /*! \brief  ACL settings 
    */
