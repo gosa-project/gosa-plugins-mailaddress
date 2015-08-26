@@ -4,7 +4,7 @@
 #: personal/mailaddress/class_mailAccount.inc:120
 #: personal/mailaddress/class_mailAccount.inc:122
 #: personal/mailaddress/class_mailAccount.inc:375
-#: personal/mailaddress/class_mailAccount.inc:426
+#: personal/mailaddress/class_mailAccount.inc:432
 msgid "Mail"
 msgstr "Mail"
 
@@ -37,7 +37,7 @@ msgstr "Please select an entry!"
 #: personal/mailaddress/class_mailAccount.inc:291
 #: personal/mailaddress/class_mailAccount.inc:295
 #: personal/mailaddress/class_mailAccount.inc:313
-#: personal/mailaddress/class_mailAccount.inc:440
+#: personal/mailaddress/class_mailAccount.inc:446
 #: personal/mailaddress/generic.tpl:7 personal/mailaddress/generic.tpl:9
 msgid "Mail address"
 msgstr "Mail address"
@@ -181,12 +181,12 @@ msgstr "or"
 msgid "Please make use of placeholders for the user part of the mail address."
 msgstr "Please make use of placeholders for the user part of the mail address."
 
-#: personal/mailaddress/class_mailAccount.inc:427
+#: personal/mailaddress/class_mailAccount.inc:433
 #: personal/mailaddress/generic.tpl:6
 msgid "User Mail Address"
 msgstr "User Mail Address"
 
-#: personal/mailaddress/class_mailAccount.inc:431
+#: personal/mailaddress/class_mailAccount.inc:437
 msgid "My account"
 msgstr "My account"
 

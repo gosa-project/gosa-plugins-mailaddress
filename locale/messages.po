@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 00:50+0200\n"
+"POT-Creation-Date: 2015-08-27 01:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: personal/mailaddress/class_mailAccount.inc:120
 #: personal/mailaddress/class_mailAccount.inc:122
 #: personal/mailaddress/class_mailAccount.inc:375
-#: personal/mailaddress/class_mailAccount.inc:426
+#: personal/mailaddress/class_mailAccount.inc:432
 msgid "Mail"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 #: personal/mailaddress/class_mailAccount.inc:291
 #: personal/mailaddress/class_mailAccount.inc:295
 #: personal/mailaddress/class_mailAccount.inc:313
-#: personal/mailaddress/class_mailAccount.inc:440
+#: personal/mailaddress/class_mailAccount.inc:446
 #: personal/mailaddress/generic.tpl:7 personal/mailaddress/generic.tpl:9
 msgid "Mail address"
 msgstr ""
@@ -196,12 +196,12 @@ msgstr ""
 msgid "Please make use of placeholders for the user part of the mail address."
 msgstr ""
 
-#: personal/mailaddress/class_mailAccount.inc:427
+#: personal/mailaddress/class_mailAccount.inc:433
 #: personal/mailaddress/generic.tpl:6
 msgid "User Mail Address"
 msgstr ""
 
-#: personal/mailaddress/class_mailAccount.inc:431
+#: personal/mailaddress/class_mailAccount.inc:437
 msgid "My account"
 msgstr ""
 
