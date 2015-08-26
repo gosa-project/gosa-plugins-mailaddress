@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-05 18:52+0200\n"
+"POT-Creation-Date: 2015-08-26 21:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,169 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: admin/groups/mailaddress/class_groupMail.inc:94
+#: admin/groups/mailaddress/class_groupMail.inc:96
+#: admin/groups/mailaddress/class_groupMail.inc:479
+#: personal/mailaddress/class_mailAccount.inc:120
+#: personal/mailaddress/class_mailAccount.inc:122
+#: personal/mailaddress/class_mailAccount.inc:375
+#: personal/mailaddress/class_mailAccount.inc:420
+msgid "Mail"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:123
+#: admin/groups/mailaddress/class_groupMail.inc:147
+#: admin/groups/mailaddress/class_groupMail.inc:153
+#: admin/groups/mailaddress/class_groupMail.inc:179
+#: admin/groups/mailaddress/class_groupMail.inc:185
+#: admin/groups/mailaddress/class_groupMail.inc:199
+msgid "Error"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:123
+msgid "Please select an entry!"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:147
+#: admin/groups/mailaddress/class_groupMail.inc:179
+#: admin/groups/mailaddress/class_groupMail.inc:185
+#: admin/groups/mailaddress/class_groupMail.inc:199
+#: admin/groups/mailaddress/class_groupMail.inc:356
+#: admin/groups/mailaddress/class_groupMail.inc:359
+#: admin/groups/mailaddress/class_groupMail.inc:361
+#: admin/groups/mailaddress/class_groupMail.inc:373
+#: admin/groups/mailaddress/class_groupMail.inc:487
+#: admin/groups/mailaddress/mailaddress.tpl:10
+#: admin/groups/mailaddress/paste_mailaddress.tpl:9
+#: personal/mailaddress/class_mailAccount.inc:283
+#: personal/mailaddress/class_mailAccount.inc:285
+#: personal/mailaddress/class_mailAccount.inc:291
+#: personal/mailaddress/class_mailAccount.inc:295
+#: personal/mailaddress/class_mailAccount.inc:313
+#: personal/mailaddress/class_mailAccount.inc:434
+#: personal/mailaddress/generic.tpl:7 personal/mailaddress/generic.tpl:9
+msgid "Mail address"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:153
+msgid "Cannot add primary address to the list of forwarders!"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:195
+#: personal/mailaddress/class_mailAccount.inc:309
+#, php-format
+msgid "Address is already in use by group '%s'."
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:197
+#: personal/mailaddress/class_mailAccount.inc:311
+#, php-format
+msgid "Address is already in use by user '%s'."
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:265
+#: admin/groups/mailaddress/class_groupMail.inc:322
+#: personal/mailaddress/class_mailAccount.inc:212
+#: personal/mailaddress/class_mailAccount.inc:244
+msgid "LDAP error"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:480
+msgid "Group mail"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:488
+msgid "Alternate addresses"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:489
+msgid "Forwarding addresses"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:490
+msgid "Permissions"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:539
+#: admin/groups/mailaddress/mailaddress.tpl:27
+#: personal/mailaddress/class_mailAccount.inc:382
+#: personal/mailaddress/class_mailAccount.inc:385
+#: personal/mailaddress/generic.tpl:26
+msgid "Mail address pattern"
+msgstr ""
+
+#: admin/groups/mailaddress/class_groupMail.inc:539
+#, php-format
+msgid ""
+"Please make use of the {%cn} placeholder for the group part of the mail "
+"address."
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:1
+#: admin/groups/mailaddress/paste_mailaddress.tpl:1
+msgid "Mail settings"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:7
+#: admin/groups/mailaddress/mailaddress.tpl:19
+msgid "Generic"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:8
+#: admin/groups/mailaddress/mailaddress.tpl:20
+#: admin/groups/mailaddress/paste_mailaddress.tpl:6
+msgid "Mail address settings"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:22
+#, php-format
+msgid ""
+"Please specify a mail address pattern (e.g., {ldelim}%cn{rdelim}@your-domain."
+"com) or leave empty."
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:42
+#: admin/groups/mailaddress/paste_mailaddress.tpl:26
+msgid "Alternative addresses"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:47
+#: admin/groups/mailaddress/paste_mailaddress.tpl:27
+msgid "List of alternative mail addresses"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:73
+#: admin/groups/mailaddress/mailaddress.tpl:74
+msgid "Advanced mail options"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:79
+#: admin/groups/mailaddress/paste_mailaddress.tpl:40
+msgid "Forward messages to non group members"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:87
+msgid "Used in all groups"
+msgstr ""
+
+#: admin/groups/mailaddress/mailaddress.tpl:90
+msgid "Not used in all groups"
+msgstr ""
+
+#: admin/groups/mailaddress/paste_mailaddress.tpl:2
+msgid "Paste mail settings"
+msgstr ""
+
+#: admin/groups/mailaddress/paste_mailaddress.tpl:13
+msgid "Mail address for this group"
+msgstr ""
+
+#: admin/groups/mailaddress/paste_mailaddress.tpl:21
+msgid "Additional mail settings"
+msgstr ""
+
 #: personal/mailaddress/class_mailAccount.inc:37
-#: personal/mailaddress/class_mailAccount.inc:113
+#: personal/mailaddress/class_mailAccount.inc:114
 #: personal/mailaddress/copypaste.tpl:1 personal/mailaddress/copypaste.tpl:3
 #: personal/mailaddress/copypaste.tpl:5
 msgid "Mail Address"
@@ -28,54 +189,44 @@ msgstr ""
 msgid "Manage user mail address"
 msgstr ""
 
-#: personal/mailaddress/class_mailAccount.inc:119
-#: personal/mailaddress/class_mailAccount.inc:121
-#: personal/mailaddress/class_mailAccount.inc:365
-msgid "Mail"
-msgstr ""
-
-#: personal/mailaddress/class_mailAccount.inc:208
-#: personal/mailaddress/class_mailAccount.inc:240
-msgid "LDAP error"
-msgstr ""
-
-#: personal/mailaddress/class_mailAccount.inc:279
-#: personal/mailaddress/class_mailAccount.inc:281
-#: personal/mailaddress/class_mailAccount.inc:286
-#: personal/mailaddress/class_mailAccount.inc:290
-#: personal/mailaddress/class_mailAccount.inc:308
-#: personal/mailaddress/class_mailAccount.inc:379
-#: personal/mailaddress/generic.tpl:7 personal/mailaddress/generic.tpl:9
-msgid "Mail address"
-msgstr ""
-
-#: personal/mailaddress/class_mailAccount.inc:279
+#: personal/mailaddress/class_mailAccount.inc:283
+#: personal/mailaddress/class_mailAccount.inc:382
 msgid "Examples"
 msgstr ""
 
-#: personal/mailaddress/class_mailAccount.inc:279
+#: personal/mailaddress/class_mailAccount.inc:283
+#: personal/mailaddress/class_mailAccount.inc:382
 msgid "or"
 msgstr ""
 
-#: personal/mailaddress/class_mailAccount.inc:304
-#, php-format
-msgid "Address is already in use by group '%s'."
+#: personal/mailaddress/class_mailAccount.inc:385
+msgid "Please make use of placeholders for the user part of the mail address."
 msgstr ""
 
-#: personal/mailaddress/class_mailAccount.inc:306
-#, php-format
-msgid "Address is already in use by user '%s'."
-msgstr ""
-
-#: personal/mailaddress/class_mailAccount.inc:366
-#: personal/mailaddress/generic.tpl:5
+#: personal/mailaddress/class_mailAccount.inc:421
+#: personal/mailaddress/generic.tpl:6
 msgid "User Mail Address"
 msgstr ""
 
-#: personal/mailaddress/class_mailAccount.inc:370
+#: personal/mailaddress/class_mailAccount.inc:425
 msgid "My account"
 msgstr ""
 
 #: personal/mailaddress/generic.tpl:1
 msgid "Mail Address Settings"
+msgstr ""
+
+#: personal/mailaddress/generic.tpl:18
+msgid "User Mail Addresses"
+msgstr ""
+
+#: personal/mailaddress/generic.tpl:19
+msgid "Mail addresses"
+msgstr ""
+
+#: personal/mailaddress/generic.tpl:21
+msgid ""
+"Please specify a mail address pattern (e.g., {ldelim}%uid{rdelim}@your-"
+"domain.com). Valid placeholders are: {ldelim}%uid{rdelim}, "
+"{ldelim}%givenName{rdelim} and {ldelim}%sn{rdelim}."
 msgstr ""
