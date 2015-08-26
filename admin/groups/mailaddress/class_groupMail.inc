@@ -481,8 +481,7 @@ class mailgroup extends plugin
                     "plProvidedAcls"=> array(
                         "mail"                      => _("Mail address"),
                         "gosaMailAlternateAddress"  => _("Alternate addresses"),
-                        "gosaMailForwardingAddress" => _("Forwarding addresses"),
-                        "acl"                       => _("Permissions"))
+                        "gosaMailForwardingAddress" => _("Forwarding addresses"))
                     ));
     }
 
