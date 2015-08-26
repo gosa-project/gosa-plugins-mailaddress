@@ -351,15 +351,13 @@ class mailgroup extends plugin
 
         /* Mail address checks */
         $mail = $this->mail;
-        if(!$this->initially_was_account){
-            if (empty($mail)){
-                $message[]= msgPool::required(_("Mail address"));
-            }elseif (!tests::is_email($mail)){
-                if ($this->is_template){
-                    $message[]= msgPool::invalid(_("Mail address"),"","","{%cn}@your-domain.com");
-                } else {
-                    $message[]= msgPool::invalid(_("Mail address"),"","","your-address@your-domain.com");
-                }
+        if (empty($mail)){
+            $message[]= msgPool::required(_("Mail address"));
+        }elseif (!tests::is_email($mail)){
+            if ($this->is_template){
+                $message[]= msgPool::invalid(_("Mail address"),"","","{%cn}@your-domain.com");
+            } else {
+                $message[]= msgPool::invalid(_("Mail address"),"","","your-address@your-domain.com");
             }
         }
 
