@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 21:28+0200\n"
+"POT-Creation-Date: 2015-08-27 00:01+0200\n"
 "PO-Revision-Date: 2015-08-26 21:59+0100\n"
 "Last-Translator: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>\n"
 "Language-Team: deutsch <de@li.org>\n"
@@ -19,9 +19,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.10\n"
 
-#: admin/groups/mailaddress/class_groupMail.inc:94
-#: admin/groups/mailaddress/class_groupMail.inc:96
-#: admin/groups/mailaddress/class_groupMail.inc:479
+#: admin/groups/mailaddress/class_groupMail.inc:91
+#: admin/groups/mailaddress/class_groupMail.inc:93
+#: admin/groups/mailaddress/class_groupMail.inc:474
 #: personal/mailaddress/class_mailAccount.inc:120
 #: personal/mailaddress/class_mailAccount.inc:122
 #: personal/mailaddress/class_mailAccount.inc:375
@@ -29,28 +29,28 @@ msgstr ""
 msgid "Mail"
 msgstr "Mail"
 
-#: admin/groups/mailaddress/class_groupMail.inc:123
-#: admin/groups/mailaddress/class_groupMail.inc:147
-#: admin/groups/mailaddress/class_groupMail.inc:153
-#: admin/groups/mailaddress/class_groupMail.inc:179
-#: admin/groups/mailaddress/class_groupMail.inc:185
-#: admin/groups/mailaddress/class_groupMail.inc:199
+#: admin/groups/mailaddress/class_groupMail.inc:120
+#: admin/groups/mailaddress/class_groupMail.inc:144
+#: admin/groups/mailaddress/class_groupMail.inc:150
+#: admin/groups/mailaddress/class_groupMail.inc:176
+#: admin/groups/mailaddress/class_groupMail.inc:182
+#: admin/groups/mailaddress/class_groupMail.inc:196
 msgid "Error"
 msgstr "Fehler"
 
-#: admin/groups/mailaddress/class_groupMail.inc:123
+#: admin/groups/mailaddress/class_groupMail.inc:120
 msgid "Please select an entry!"
 msgstr "Bitte einen Eintrag auswählen"
 
-#: admin/groups/mailaddress/class_groupMail.inc:147
-#: admin/groups/mailaddress/class_groupMail.inc:179
-#: admin/groups/mailaddress/class_groupMail.inc:185
-#: admin/groups/mailaddress/class_groupMail.inc:199
-#: admin/groups/mailaddress/class_groupMail.inc:356
-#: admin/groups/mailaddress/class_groupMail.inc:359
-#: admin/groups/mailaddress/class_groupMail.inc:361
-#: admin/groups/mailaddress/class_groupMail.inc:373
-#: admin/groups/mailaddress/class_groupMail.inc:487
+#: admin/groups/mailaddress/class_groupMail.inc:144
+#: admin/groups/mailaddress/class_groupMail.inc:176
+#: admin/groups/mailaddress/class_groupMail.inc:182
+#: admin/groups/mailaddress/class_groupMail.inc:196
+#: admin/groups/mailaddress/class_groupMail.inc:352
+#: admin/groups/mailaddress/class_groupMail.inc:355
+#: admin/groups/mailaddress/class_groupMail.inc:357
+#: admin/groups/mailaddress/class_groupMail.inc:368
+#: admin/groups/mailaddress/class_groupMail.inc:482
 #: admin/groups/mailaddress/mailaddress.tpl:10
 #: admin/groups/mailaddress/paste_mailaddress.tpl:9
 #: personal/mailaddress/class_mailAccount.inc:283
@@ -63,48 +63,44 @@ msgstr "Bitte einen Eintrag auswählen"
 msgid "Mail address"
 msgstr "Mail-Adresse"
 
-#: admin/groups/mailaddress/class_groupMail.inc:153
+#: admin/groups/mailaddress/class_groupMail.inc:150
 msgid "Cannot add primary address to the list of forwarders!"
 msgstr ""
 "Die Primäre Mail-Addresse kann nicht zur Liste der Weiterleitungen "
 "hinzugefügt werden!"
 
-#: admin/groups/mailaddress/class_groupMail.inc:195
+#: admin/groups/mailaddress/class_groupMail.inc:192
 #: personal/mailaddress/class_mailAccount.inc:309
 #, php-format
 msgid "Address is already in use by group '%s'."
 msgstr "Die Adresse wird bereits von der Gruppe '%s' verwendet."
 
-#: admin/groups/mailaddress/class_groupMail.inc:197
+#: admin/groups/mailaddress/class_groupMail.inc:194
 #: personal/mailaddress/class_mailAccount.inc:311
 #, php-format
 msgid "Address is already in use by user '%s'."
 msgstr "Die Adresse wird bereits von Benutzer '%s' verwendet."
 
-#: admin/groups/mailaddress/class_groupMail.inc:265
-#: admin/groups/mailaddress/class_groupMail.inc:322
+#: admin/groups/mailaddress/class_groupMail.inc:262
+#: admin/groups/mailaddress/class_groupMail.inc:319
 #: personal/mailaddress/class_mailAccount.inc:212
 #: personal/mailaddress/class_mailAccount.inc:244
 msgid "LDAP error"
 msgstr "LDAP-Fehler"
 
-#: admin/groups/mailaddress/class_groupMail.inc:480
+#: admin/groups/mailaddress/class_groupMail.inc:475
 msgid "Group mail"
 msgstr "Mail der Gruppe"
 
-#: admin/groups/mailaddress/class_groupMail.inc:488
+#: admin/groups/mailaddress/class_groupMail.inc:483
 msgid "Alternate addresses"
 msgstr "Alternative Adressen"
 
-#: admin/groups/mailaddress/class_groupMail.inc:489
+#: admin/groups/mailaddress/class_groupMail.inc:484
 msgid "Forwarding addresses"
 msgstr "Weiterleitungsadressen"
 
-#: admin/groups/mailaddress/class_groupMail.inc:490
-msgid "Permissions"
-msgstr "Berechtigungen"
-
-#: admin/groups/mailaddress/class_groupMail.inc:539
+#: admin/groups/mailaddress/class_groupMail.inc:533
 #: admin/groups/mailaddress/mailaddress.tpl:27
 #: personal/mailaddress/class_mailAccount.inc:382
 #: personal/mailaddress/class_mailAccount.inc:385
@@ -112,7 +108,7 @@ msgstr "Berechtigungen"
 msgid "Mail address pattern"
 msgstr "Mail-Adressschema"
 
-#: admin/groups/mailaddress/class_groupMail.inc:539
+#: admin/groups/mailaddress/class_groupMail.inc:533
 #, php-format
 msgid ""
 "Please make use of the {%cn} placeholder for the group part of the mail "
@@ -139,11 +135,11 @@ msgstr "Mail-Adresseinstellungen"
 #: admin/groups/mailaddress/mailaddress.tpl:22
 #, php-format
 msgid ""
-"Please specify a mail address pattern (e.g., {ldelim}%cn{rdelim}@your-domain."
+"Please specify a mail address pattern (e.g., &#123;%cn&#124;@your-domain."
 "com) or leave empty."
 msgstr ""
-"Bitte ein Mail-Adressschema eingeben (z.Bsp. {ldelim}%cn{rdelim}@your-"
-"domain.com) oder das Feld frei lassen."
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. &#123;%cn&#124;@your-domain."
+"com) oder das Feld frei lassen."
 
 #: admin/groups/mailaddress/mailaddress.tpl:42
 #: admin/groups/mailaddress/paste_mailaddress.tpl:26
@@ -232,11 +228,15 @@ msgid "Mail addresses"
 msgstr "Mail-Adresse"
 
 #: personal/mailaddress/generic.tpl:21
+#, fuzzy
 msgid ""
-"Please specify a mail address pattern (e.g., {ldelim}%uid{rdelim}@your-"
-"domain.com). Valid placeholders are: {ldelim}%uid{rdelim}, "
-"{ldelim}%givenName{rdelim} and {ldelim}%sn{rdelim}."
+"Please specify a mail address pattern (e.g., &#123;%uid&#124;@your-domain."
+"com). Valid placeholders are: &#123;%uid&#124;, &#123;%givenName&#124; and "
+"&#123;%sn&#124;."
 msgstr ""
-"Bitte ein Mail-Adressschema eingeben (z.Bsp. {ldelim}%uid{rdelim}@your-"
-"domain.com). Gültige Platzhalter sind: {ldelim}%uid{rdelim}, "
-"{ldelim}%givenName{rdelim} und {ldelim}%sn{rdelim}."
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. &#123;%uid&#124;@your-"
+"domain.com). Gültige Platzhalter sind: &#123;%uid&#124;, "
+"&#123;%givenName&#124; und &#123;%sn&#124;."
+
+#~ msgid "Permissions"
+#~ msgstr "Berechtigungen"

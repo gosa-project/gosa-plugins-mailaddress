@@ -19,7 +19,7 @@
    <h3>{t}Generic{/t}</h3>
    <table summary="{t}Mail address settings{/t}">
     <tr>
-    <td colspan="2"><i>{t}Please specify a mail address pattern (e.g., {ldelim}%cn{rdelim}@your-domain.com) or leave empty.{/t}</i>
+    <td colspan="2"><i>{t}Please specify a mail address pattern (e.g., &#123;%cn&#124;@your-domain.com) or leave empty.{/t}</i>
     </td>
     </tr>
     <tr><td>&nbsp;</td></tr>
