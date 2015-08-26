@@ -66,7 +66,7 @@ msgstr "Mail-Adresse"
 #: admin/groups/mailaddress/class_groupMail.inc:153
 msgid "Cannot add primary address to the list of forwarders!"
 msgstr ""
-"Die Primäre e-Mail Addresse kann nicht zur Liste der Weiterleitungen "
+"Die Primäre Mail-Addresse kann nicht zur Liste der Weiterleitungen "
 "hinzugefügt werden!"
 
 #: admin/groups/mailaddress/class_groupMail.inc:195
@@ -90,7 +90,7 @@ msgstr "LDAP-Fehler"
 
 #: admin/groups/mailaddress/class_groupMail.inc:480
 msgid "Group mail"
-msgstr "e-Mail der Gruppe"
+msgstr "Mail der Gruppe"
 
 #: admin/groups/mailaddress/class_groupMail.inc:488
 msgid "Alternate addresses"
@@ -110,7 +110,7 @@ msgstr "Berechtigungen"
 #: personal/mailaddress/class_mailAccount.inc:385
 #: personal/mailaddress/generic.tpl:26
 msgid "Mail address pattern"
-msgstr "e-Mail Adressschema"
+msgstr "Mail-Adressschema"
 
 #: admin/groups/mailaddress/class_groupMail.inc:539
 #, php-format
@@ -118,12 +118,12 @@ msgid ""
 "Please make use of the {%cn} placeholder for the group part of the mail "
 "address."
 msgstr ""
-"Bitte den {%cn} Platzhalter für den Gruppenteil der e-Mail Adresse verwenden."
+"Bitte den {%cn} Platzhalter für den Gruppenteil der Mail-Adresse verwenden."
 
 #: admin/groups/mailaddress/mailaddress.tpl:1
 #: admin/groups/mailaddress/paste_mailaddress.tpl:1
 msgid "Mail settings"
-msgstr "e-Mail Einstellungen"
+msgstr "Mail-Einstellungen"
 
 #: admin/groups/mailaddress/mailaddress.tpl:7
 #: admin/groups/mailaddress/mailaddress.tpl:19
@@ -134,7 +134,7 @@ msgstr "Allgemein"
 #: admin/groups/mailaddress/mailaddress.tpl:20
 #: admin/groups/mailaddress/paste_mailaddress.tpl:6
 msgid "Mail address settings"
-msgstr "e-Mail Adresseinstellungen"
+msgstr "Mail-Adresseinstellungen"
 
 #: admin/groups/mailaddress/mailaddress.tpl:22
 #, php-format
@@ -142,23 +142,23 @@ msgid ""
 "Please specify a mail address pattern (e.g., {ldelim}%cn{rdelim}@your-domain."
 "com) or leave empty."
 msgstr ""
-"Bitte ein e-Mail Adressschema eingeben (z.Bsp. {ldelim}%cn{rdelim}@your-"
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. {ldelim}%cn{rdelim}@your-"
 "domain.com) oder das Feld frei lassen."
 
 #: admin/groups/mailaddress/mailaddress.tpl:42
 #: admin/groups/mailaddress/paste_mailaddress.tpl:26
 msgid "Alternative addresses"
-msgstr "e-Mail Aliase"
+msgstr "Mail-Aliase"
 
 #: admin/groups/mailaddress/mailaddress.tpl:47
 #: admin/groups/mailaddress/paste_mailaddress.tpl:27
 msgid "List of alternative mail addresses"
-msgstr "Liste mit alternativen e-Mail Adressen"
+msgstr "Liste mit alternativen Mail-Adressen"
 
 #: admin/groups/mailaddress/mailaddress.tpl:73
 #: admin/groups/mailaddress/mailaddress.tpl:74
 msgid "Advanced mail options"
-msgstr "Erweiterte e-Mail Optionen"
+msgstr "Erweiterte Mail-Optionen"
 
 #: admin/groups/mailaddress/mailaddress.tpl:79
 #: admin/groups/mailaddress/paste_mailaddress.tpl:40
@@ -175,26 +175,26 @@ msgstr "Nicht verwendet in allen Gruppen"
 
 #: admin/groups/mailaddress/paste_mailaddress.tpl:2
 msgid "Paste mail settings"
-msgstr "e-Mail Einstellungen Einfügen"
+msgstr "Mail-Einstellungen Einfügen"
 
 #: admin/groups/mailaddress/paste_mailaddress.tpl:13
 msgid "Mail address for this group"
-msgstr "e-Mail Adresse für diese Gruppe"
+msgstr "Mail-Adresse für diese Gruppe"
 
 #: admin/groups/mailaddress/paste_mailaddress.tpl:21
 msgid "Additional mail settings"
-msgstr "Weitere e-Mail Einstellungen"
+msgstr "Weitere Mail-Einstellungen"
 
 #: personal/mailaddress/class_mailAccount.inc:37
 #: personal/mailaddress/class_mailAccount.inc:114
 #: personal/mailaddress/copypaste.tpl:1 personal/mailaddress/copypaste.tpl:3
 #: personal/mailaddress/copypaste.tpl:5
 msgid "Mail Address"
-msgstr "e-Mail Adresse"
+msgstr "Mail-Adresse"
 
 #: personal/mailaddress/class_mailAccount.inc:38
 msgid "Manage user mail address"
-msgstr "e-Mail Adressen von Benutzern verwalten"
+msgstr "Mail-Adressen von Benutzern verwalten"
 
 #: personal/mailaddress/class_mailAccount.inc:283
 #: personal/mailaddress/class_mailAccount.inc:382
@@ -208,7 +208,7 @@ msgstr "oder"
 
 #: personal/mailaddress/class_mailAccount.inc:385
 msgid "Please make use of placeholders for the user part of the mail address."
-msgstr "Bitte Platzhalter für den Benutzerteil der e-Mail Adresse verwenden."
+msgstr "Bitte Platzhalter für den Benutzerteil der Mail-Adresse verwenden."
 
 #: personal/mailaddress/class_mailAccount.inc:421
 #: personal/mailaddress/generic.tpl:6
@@ -221,15 +221,15 @@ msgstr "Mein Konto"
 
 #: personal/mailaddress/generic.tpl:1
 msgid "Mail Address Settings"
-msgstr "e-Mail Adresseinstellungen"
+msgstr "Mail-Adresseinstellungen"
 
 #: personal/mailaddress/generic.tpl:18
 msgid "User Mail Addresses"
-msgstr "e-Mail Adresse des Benutzers"
+msgstr "Mail-Adresse des Benutzers"
 
 #: personal/mailaddress/generic.tpl:19
 msgid "Mail addresses"
-msgstr "e-Mail Adresse"
+msgstr "Mail-Adresse"
 
 #: personal/mailaddress/generic.tpl:21
 msgid ""
@@ -237,6 +237,6 @@ msgid ""
 "domain.com). Valid placeholders are: {ldelim}%uid{rdelim}, "
 "{ldelim}%givenName{rdelim} and {ldelim}%sn{rdelim}."
 msgstr ""
-"Bitte ein e-Mail Adressschema eingeben (z.Bsp. {ldelim}%uid{rdelim}@your-"
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. {ldelim}%uid{rdelim}@your-"
 "domain.com). Gültige Platzhalter sind: {ldelim}%uid{rdelim}, "
 "{ldelim}%givenName{rdelim} und {ldelim}%sn{rdelim}."
