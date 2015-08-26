@@ -408,6 +408,12 @@ class mailAccount extends plugin
       }
     }
 
+    /* Add mail account data, if object is not in account state, yet
+     */
+    if(!$this->is_account && $this->acl_is_createable()){
+        $this->is_account= TRUE;
+    }
+
     plugin::set_multi_edit_values($attrs);
   }
 
