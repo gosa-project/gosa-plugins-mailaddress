@@ -99,7 +99,7 @@ msgstr "Weiterleitungsadressen"
 
 #: admin/groups/mailaddress/class_groupMail.inc:490
 msgid "Permissions"
-msgstr "Berechtigungen
+msgstr "Berechtigungen"
 
 #: admin/groups/mailaddress/class_groupMail.inc:539
 #: admin/groups/mailaddress/mailaddress.tpl:27
