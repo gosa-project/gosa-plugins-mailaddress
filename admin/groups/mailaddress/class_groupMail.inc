@@ -567,12 +567,12 @@ class mailgroup extends plugin
             if (preg_match("/{%cn}/", $mail_pattern)){
                 $attrs['mail']= str_replace("{%cn}", $value, $mail_pattern);
             }
-        }
 
-        /* Add mail account data, if object is not in account state, yet
-         */
-        if(!$this->is_account && $this->acl_is_createable()){
-            $this->is_account= TRUE;
+            /* Add mail account data, if object is not in account state, yet
+             */
+            if(!$this->is_account && $this->acl_is_createable()){
+                $this->is_account= TRUE;
+            }
         }
 
         plugin::set_multi_edit_values($attrs);
