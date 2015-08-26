@@ -3,10 +3,10 @@
 class mailgroup extends plugin
 {
     /* Multiple edit */
-    var $gosaMailForwardingAddress_Some  = array();  // Used in multiple edit 
+    var $gosaMailForwardingAddress_Some  = array();  // Used in multiple edit
 
     /* Default values */
-    var $mail                       = "";           // Default mail address 
+    var $mail                       = "";           // Default mail address
     var $gosaMailAlternateAddress   = array();  // Set default Alternate Mail Adresses to empty array
     var $gosaMailForwardingAddress  = array();  // Forwarding also empty
     /* Internal */
@@ -16,7 +16,7 @@ class mailgroup extends plugin
      * required due to gosaMailAccount objectclass requirements.
      */
     var $gosaMailServer             = "NULL";
-    var $gosaMailDeliveryMode       = "[         ]";   // 
+    var $gosaMailDeliveryMode       = "[         ]";   //
 
     /* attribute list for save action */
     var $attributes= array( "mail", "gosaMailServer", "gosaMailDeliveryMode",
@@ -221,7 +221,7 @@ class mailgroup extends plugin
 
 
         /******
-          Multi edit support 
+          Multi edit support
          ******/
         foreach($this->attributes as $attr){
             if(in_array_strict($attr,$this->multi_boxes)){
@@ -257,7 +257,7 @@ class mailgroup extends plugin
         $this->cleanup();
         $ldap = $this->config->get_ldap_link();
         $ldap->cd($this->dn);
-        $ldap->modify ($this->attrs); 
+        $ldap->modify ($this->attrs);
         if (!$ldap->success()){
             msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, get_class()));
         }
@@ -314,7 +314,7 @@ class mailgroup extends plugin
         /* Save data to LDAP */
         $ldap->cd($this->dn);
         $this->cleanup();
-        $ldap->modify ($this->attrs); 
+        $ldap->modify ($this->attrs);
         if (!$ldap->success()){
             msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, get_class()));
         }
@@ -322,7 +322,7 @@ class mailgroup extends plugin
         if($this->initially_was_account){
             new log("modify","groups/".get_class($this),$this->dn,array_keys($this->attrs),$ldap->get_error());
         }else{
-            new log("create","groups/".get_class($this),$this->dn,array_keys($this->attrs),$ldap->get_error());  
+            new log("create","groups/".get_class($this),$this->dn,array_keys($this->attrs),$ldap->get_error());
         }
 
         /* Optionally execute a command after we''re done */
@@ -449,7 +449,7 @@ class mailgroup extends plugin
     {
         if(!$this->is_account) return;
 
-        /* Perform ADD / REMOVE ... for mail alternate / mail forwarding addresses 
+        /* Perform ADD / REMOVE ... for mail alternate / mail forwarding addresses
          */
         $this->execute();
         if(isset($_POST['mail'])){
@@ -477,7 +477,7 @@ class mailgroup extends plugin
                     "plDepends"     => array(),
                     "plPriority"    => 10,
                     "plSection"     => array("administration"),
-                    "plCategory"    => array("groups"), 
+                    "plCategory"    => array("groups"),
                     "plProvidedAcls"=> array(
                         "mail"                      => _("Mail address"),
                         "gosaMailAlternateAddress"  => _("Alternate addresses"),
@@ -541,8 +541,8 @@ class mailgroup extends plugin
     function get_multi_edit_values()
     {
         $ret = plugin::get_multi_edit_values();
-        $ret['Forward_some'] = $this->gosaMailForwardingAddress_Some;    
-        $ret['Forward_all'] = $this->gosaMailForwardingAddress;    
+        $ret['Forward_some'] = $this->gosaMailForwardingAddress_Some;
+        $ret['Forward_all'] = $this->gosaMailForwardingAddress;
         $ret['mail'] = $this->mail;
         return($ret);
     }
@@ -597,7 +597,7 @@ class mailgroup extends plugin
 
         /* Update multiple edit values too */
         if($this->multiple_support_active){
-            $this->gosaMailForwardingAddress_Some= 
+            $this->gosaMailForwardingAddress_Some=
                 array_remove_entries (array($address),$this->gosaMailForwardingAddress_Some);
         }
 
@@ -607,7 +607,7 @@ class mailgroup extends plugin
     }
 
 
-    /*! \brief  Removes the given mail address from the forwarders 
+    /*! \brief  Removes the given mail address from the forwarders
      */
     function delForwarder($addresses)
     {
@@ -660,7 +660,7 @@ class mailgroup extends plugin
     }
 
 
-    /*! \brief  Removes the given mail address from the alternate addresses  
+    /*! \brief  Removes the given mail address from the alternate addresses
      */
     function delAlternate($addresses)
     {

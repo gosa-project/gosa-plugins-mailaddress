@@ -2,14 +2,14 @@
 <table style='width:100%; ' summary="{t}Paste mail settings{/t}">
 
  	<tr>
-  		<td colspan=2>   
+  		<td colspan=2>
 			<table summary="{t}Mail address settings{/t}">
     			<tr>
      				<td>
 						<LABEL for="mail">{t}Mail address{/t}</LABEL>{$must}
 					</td>
      				<td>
-						<input id="mail" name="mail" size="25" maxlength="65" type='text' 
+						<input id="mail" name="mail" size="25" maxlength="65" type='text'
 							value="{$mail}" title="{t}Mail address for this group{/t}">
 					</td>
     			</tr>

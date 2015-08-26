@@ -1,6 +1,6 @@
 <table summary="{t}Mail Address Settings{/t}" style='width:100%;'>
  <tr>
-  <td style='width:50%; '>  
+  <td style='width:50%; '>
 
    {if !$multiple_support}
    <h3>{t}User Mail Address{/t}</h3>

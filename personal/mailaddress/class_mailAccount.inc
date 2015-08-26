@@ -1,5 +1,5 @@
 <?php
-/*! 
+/*!
   \brief   mail plugin
   \author  Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
   \version 0.99.3
@@ -9,7 +9,7 @@
   has been derived from gosa-plugin-mail, but it is not used to
   actually control mailservers. It is only used for allowing
   mail information to be stored in LDAP.
-  
+
   This plugin actually breaks gosa-mail-account and is intended to be a
   drop-in replacement for it in situations where it is only necessary
   to store information in inetOrgPerson''s mail LDAP attribute description.
@@ -66,9 +66,9 @@ class mailAccount extends plugin
    */
   function __construct (&$config, $dn= NULL)
   {
-    plugin::plugin($config,$dn); 
+    plugin::plugin($config,$dn);
 
-    /* Get attributes from parent object 
+    /* Get attributes from parent object
      */
     foreach(array("uid","cn") as $attr){
       if(isset($this->parent->by_object['group']) && isset($this->parent->by_object['group']->$attr)){
@@ -116,7 +116,7 @@ class mailAccount extends plugin
         return ($display);
       }
       if ($this->parent !== NULL){
-        if ($this->is_account){ 
+        if ($this->is_account){
           $display= $this->show_disable_header(msgPool::removeFeaturesButton(_("Mail")),msgPool::featuresEnabled(_("Mail")));
         } else {
           $display= $this->show_enable_header(msgPool::addFeaturesButton(_("Mail")),msgPool::featuresDisabled(_("Mail")));
@@ -132,7 +132,7 @@ class mailAccount extends plugin
     }
 */
     /****************
-      SMARTY- Assign smarty variables 
+      SMARTY- Assign smarty variables
      ****************/
     $smarty = get_smarty();
 
@@ -177,8 +177,8 @@ class mailAccount extends plugin
   }
 
 
-  /*! \brief  Removes the mailAccount extension from ldap 
-   */  
+  /*! \brief  Removes the mailAccount extension from ldap
+   */
   function remove_from_parent()
   {
     /* Cancel if there's nothing to do here */
@@ -262,7 +262,7 @@ class mailAccount extends plugin
   }
 
 
-  /*! \brief  Check given values 
+  /*! \brief  Check given values
    */
   function check()
   {
@@ -317,7 +317,7 @@ class mailAccount extends plugin
   }
 
 
-  /*! \brief  Adapt from template, using 'dn' 
+  /*! \brief  Adapt from template, using 'dn'
    */
   function adapt_from_template($dn, $skip= array())
   {
@@ -334,8 +334,8 @@ class mailAccount extends plugin
   }
 
 
-  /*! \brief  Creates the mail part for the copy & paste dialog 
-   */ 
+  /*! \brief  Creates the mail part for the copy & paste dialog
+   */
   function getCopyDialog()
   {
       if(!$this->is_account) return("");
@@ -351,8 +351,8 @@ class mailAccount extends plugin
   }
 
 
-  /*! \brief  save_object for copy&paste vars 
-   */  
+  /*! \brief  save_object for copy&paste vars
+   */
   function saveCopyDialog()
   {
       if(!$this->is_account) return;
@@ -424,7 +424,7 @@ class mailAccount extends plugin
   }
 
 
-  /*! \brief  ACL settings 
+  /*! \brief  ACL settings
    */
   static function plInfo()
   {
@@ -441,7 +441,7 @@ class mailAccount extends plugin
                   "plRequirements"=> array(
                       'onFailureDisablePlugin' => array(get_class())
                       ),
-    
+
                   "plProvidedAcls"  => array(
                               "mail"                      =>  _("Mail address"),
                   ),

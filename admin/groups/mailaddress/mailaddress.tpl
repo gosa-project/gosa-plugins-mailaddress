@@ -43,7 +43,7 @@
    </h3>
 
 {render acl=$gosaMailAlternateAddressACL}
-   <select style="width:100%;" name="alternates_list[]" size=10 multiple 
+   <select style="width:100%;" name="alternates_list[]" size=10 multiple
 	title="{t}List of alternative mail addresses{/t}">
     {html_options values=$gosaMailAlternateAddress output=$gosaMailAlternateAddress}
 	<option disabled>&nbsp;</option>
@@ -70,7 +70,7 @@
 
 <hr>
 
-<h3>{t}Advanced mail options{/t}</h3> 
+<h3>{t}Advanced mail options{/t}</h3>
 <table style='width:100%; ' summary="{t}Advanced mail options{/t}">
 
   <tr>
