@@ -3,14 +3,14 @@
 
  	<tr>
   		<td colspan=2>   
-   			<table summary="{t}Address settings{/t}">
+			<table summary="{t}Mail address settings{/t}">
     			<tr>
      				<td>
-						<LABEL for="mail">{t}Primary address{/t}</LABEL>{$must}
+						<LABEL for="mail">{t}Mail address{/t}</LABEL>{$must}
 					</td>
      				<td>
 						<input id="mail" name="mail" size="25" maxlength="65" type='text' 
-							value="{$mail}" title="{t}Primary mail address for this shared folder{/t}">
+							value="{$mail}" title="{t}Mail address for this group{/t}">
 					</td>
     			</tr>
    			</table>
@@ -45,8 +45,6 @@
 						<br>
 						<input type='text' name="forward_address" size=20 align=middle maxlength=65 value="">
 						<button type='submit' name='add_forwarder'>{msgPool type=addButton}</button>&nbsp;
-
-						<button type='submit' name='add_local_forwarder'>{t}Add local{/t}</button>&nbsp;
 
 						<button type='submit' name='delete_forwarder'>{msgPool type=delButton}</button>
 
