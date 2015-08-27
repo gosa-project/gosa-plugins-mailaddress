@@ -419,7 +419,7 @@ class mailAccount extends plugin
     plugin::set_multi_edit_values($attrs);
 
     if(!$mail_pattern){
-      $this->mail
+      $this->mail = $mail;
     }
   }
 
