@@ -1,6 +1,18 @@
-2015-08-27 01:14:17 +0200 Mike Gabriel (bada7ec)
+2015-08-27 12:15:01 +0200 Mike Gabriel (97e352d)
 
-	* release 0.99.4 (HEAD, master)
+	* release 0.99.5 (HEAD, master)
+
+2015-08-27 12:14:33 +0200 Mike Gabriel (4df0a5b)
+
+	* fix indentations, provide comment block for class_groupMail.inc
+
+2015-08-27 12:00:25 +0200 Mike Gabriel (6c81415)
+
+	* class_mailAccount: Fix incomplete line of code. (origin/master)
+
+2015-08-27 01:14:17 +0200 Mike Gabriel (2608aac)
+
+	* release 0.99.4 (tag: 0.99.4, gh/master)
 
 2015-08-27 01:16:50 +0200 Mike Gabriel (cbc1f9b)
 
@@ -15,7 +27,6 @@
 	* empty mail field on multi-edits: Remember objects' former mail
           addresses and reinstate them after
           plugin::set_multi_edit_values() has been called.
-          (origin/master)
 
 2015-08-27 00:53:54 +0200 Mike Gabriel (cf29954)
 
@@ -101,7 +112,7 @@
 
 2015-08-05 20:34:48 +0200 Mike Gabriel (bc3d0e4)
 
-	* release 0.99.3 (tag: 0.99.3, gh/master)
+	* release 0.99.3 (tag: 0.99.3)
 
 2015-08-05 20:01:05 +0200 Mike Gabriel (b6233e5)
 
