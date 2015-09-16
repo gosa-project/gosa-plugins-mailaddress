@@ -218,7 +218,7 @@ class mailAccount extends plugin {
         $ldap=$this->config->get_ldap_link ();
 
         if ($this->initially_was_account) {
-            $this->mail=trim (strtolower ($this->mail));
+            $this->mail=trim($this->mail);
         }
 
         /* Call parents save to prepare $this->attrs */
@@ -317,7 +317,7 @@ class mailAccount extends plugin {
     function adapt_from_template ($dn,$skip=array ()) {
         plugin::adapt_from_template ($dn,$skip);
 
-        $this->mail=strtolower (rewrite ($this->mail));
+        $this->mail=rewrite ($this->mail);
 
         // Remove non ASCII charcters
         $this->mail=iconv ('UTF-8','US-ASCII//TRANSLIT',$this->mail);
