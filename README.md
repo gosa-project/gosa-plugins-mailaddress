@@ -1,4 +1,4 @@
-# Simple plugin to manage user mail addresses in GOsa²
+# Simple plugin for managing user mail addresses in GOsa²
 
 This plugin is a very light-weighted version of the GOsa² mail plugin.
 Whereas gosa-plugin-mail can be used to manage a complete mail server
