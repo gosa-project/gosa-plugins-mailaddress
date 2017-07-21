@@ -62,7 +62,7 @@ class mailAccount extends plugin {
     /*! \brief  Initialize the mailAccount
      */
     function __construct (&$config,$dn=NULL) {
-        plugin::plugin ($config,$dn);
+        plugin::__construct ($config,$dn);
 
         /* Get attributes from parent object
          */
