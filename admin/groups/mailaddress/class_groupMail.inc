@@ -70,7 +70,7 @@ class mailgroup extends plugin {
     var $cn="";
 
     function __construct (&$config,$dn=NULL,$base_object=NULL) {
-        plugin::plugin ($config,$dn);
+        plugin::__construct ($config,$dn);
 
         /* Get attributes from parent object
          */
