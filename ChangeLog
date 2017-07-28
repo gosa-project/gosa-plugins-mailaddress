@@ -1,6 +1,53 @@
-2015-08-27 12:15:01 +0200 Mike Gabriel (97e352d)
+2017-07-28 10:34:18 +0200 Mike Gabriel (b6803b6)
 
-	* release 0.99.5 (HEAD, master)
+	* release 0.99.6 (HEAD -> master)
+
+2017-07-28 10:30:48 +0200 Mike Gabriel (eb5651e)
+
+	* PHP 7 compatibility: Fix parent constructor calls. (gh/master)
+
+2015-10-30 19:20:35 +0100 Mike Gabriel (61e0c6e)
+
+	* Drop "²" from GOsa in headline.
+
+2015-10-30 19:03:16 +0100 Mike Gabriel (cc5f919)
+
+	* Make README.md headline match Github project description.
+
+2015-10-30 19:02:55 +0100 Mike Gabriel (637ace0)
+
+	* Fix missing line break at EOF.
+
+2015-10-30 19:00:56 +0100 Mike Gabriel (81fb319)
+
+	* Add AUTHORS.txt file.
+
+2015-10-30 18:59:39 +0100 Mike Gabriel (01405cc)
+
+	* Add README.md file that explains about this plugin.
+
+2015-10-30 11:54:44 +0100 Mike Gabriel (31501f5)
+
+	* Add README.gosa-compat, compatible with GOsa² 2.7.x.
+          (origin/master)
+
+2015-09-16 15:19:54 +0200 Mike Gabriel (4d1fbde)
+
+	* Don't lower-case mail addresses. The user should be allowed to
+          stored mingled-cased mail addresses in the LDAP address
+          book.
+
+2015-09-01 14:18:49 +0200 Mike Gabriel (49af559)
+
+	* fine-tune .tpl gettext extraction for parameterized {t} blocks
+
+2015-09-01 13:50:06 +0200 Mike Gabriel (6616b63)
+
+	* update-locale: Make parameterized {t} blocks translatable.
+
+2015-08-27 12:15:01 +0200 Mike Gabriel (2e07b7f)
+
+	* release 0.99.5 (tag: 0.99.5)
 
 2015-08-27 12:14:33 +0200 Mike Gabriel (4df0a5b)
 
@@ -8,11 +55,11 @@
 
 2015-08-27 12:00:25 +0200 Mike Gabriel (6c81415)
 
-	* class_mailAccount: Fix incomplete line of code. (origin/master)
+	* class_mailAccount: Fix incomplete line of code.
 
 2015-08-27 01:14:17 +0200 Mike Gabriel (2608aac)
 
-	* release 0.99.4 (tag: 0.99.4, gh/master)
+	* release 0.99.4 (tag: 0.99.4)
 
 2015-08-27 01:16:50 +0200 Mike Gabriel (cbc1f9b)
 
