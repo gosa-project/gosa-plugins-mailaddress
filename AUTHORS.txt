@@ -1,4 +1,4 @@
-The Mail Addres Plugin for GOsa² has been derived from gosa-plugin-mail
+The Mail Address Plugin for GOsa² has been derived from gosa-plugin-mail
 is developed by
 
   Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
