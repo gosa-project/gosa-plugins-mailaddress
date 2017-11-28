@@ -521,7 +521,7 @@ class mailgroup extends plugin {
 
 
     function init_multiple_support ($attrs,$all) {
-        plugin::init_multiple_support ($attrs,$all);
+        plugin::__constructit_multiple_support ($attrs,$all);
 
         $this->gosaMailForwardingAddress=array ();
         if (isset ($attrs['gosaMailForwardingAddress'])) {
@@ -649,8 +649,10 @@ class mailgroup extends plugin {
       .          check if this mal address is used, skip adding in this case
      */
     function addAlternate ($address) {
-        if (empty ($address))
-            continue;
+        if (empty ($address)){
+          return "";
+        }
+
         $ldap=$this->config->get_ldap_link ();
 
         $address=strtolower ($address);
