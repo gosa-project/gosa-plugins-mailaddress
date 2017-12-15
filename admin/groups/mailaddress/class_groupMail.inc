@@ -521,7 +521,7 @@ class mailgroup extends plugin {
 
 
     function init_multiple_support ($attrs,$all) {
-        plugin::__constructit_multiple_support ($attrs,$all);
+        plugin::init_multiple_support ($attrs,$all);
 
         $this->gosaMailForwardingAddress=array ();
         if (isset ($attrs['gosaMailForwardingAddress'])) {
