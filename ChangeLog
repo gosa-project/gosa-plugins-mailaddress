@@ -1,10 +1,47 @@
-2017-07-28 10:34:18 +0200 Mike Gabriel (b6803b6)
+2019-02-06 23:10:30 +0100 Mike Gabriel (fc919f3)
 
-	* release 0.99.6 (HEAD -> master)
+	* release 0.99.7 (HEAD -> master)
+
+2019-02-06 23:01:08 +0100 Mike Gabriel (0f31635)
+
+	* Update German translation.
+
+2019-02-06 22:22:17 +0100 Mike Gabriel (c8010cf)
+
+	* contrib/update-locale: Fix recognition of translation starter.
+
+2019-02-06 22:07:03 +0100 Mike Gabriel (bf5e27c)
+
+	* update translation files
+
+2019-02-06 22:05:47 +0100 Mike Gabriel (3f143af)
+
+	* Add support for editing LDAP's alias attribute description (only
+          for users for now).
+
+2017-12-15 11:17:57 +0100 bzapiec (5f5ed69)
+
+	* fixed init_multiple_support call
+
+2017-11-28 10:18:18 +0100 bzapiec (16d5d36)
+
+	* fix deprecated constructor call
+
+2017-09-05 13:04:01 +0200 Mike Gabriel (155f90a)
+
+	* Merge branch 'EdwardBetts-spelling'
+
+2017-09-01 18:13:34 +0100 Edward Betts (a4af8d9)
+
+	* correct spelling mistake
+
+2017-07-28 10:34:18 +0200 Mike Gabriel (bdb7409)
+
+	* release 0.99.6 (tag: 0.99.6)
 
 2017-07-28 10:30:48 +0200 Mike Gabriel (eb5651e)
 
-	* PHP 7 compatibility: Fix parent constructor calls. (gh/master)
+	* PHP 7 compatibility: Fix parent constructor calls.
 
 2015-10-30 19:20:35 +0100 Mike Gabriel (61e0c6e)
 
@@ -29,7 +66,6 @@
 2015-10-30 11:54:44 +0100 Mike Gabriel (31501f5)
 
 	* Add README.gosa-compat, compatible with GOsa² 2.7.x.
-          (origin/master)
 
 2015-09-16 15:19:54 +0200 Mike Gabriel (4d1fbde)
 
