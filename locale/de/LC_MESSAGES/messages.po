@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-06 22:06+0100\n"
-"PO-Revision-Date: 2015-08-26 21:59+0100\n"
+"POT-Creation-Date: 2019-02-06 22:21+0100\n"
+"PO-Revision-Date: 2019-02-06 22:24+0100\n"
 "Last-Translator: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>\n"
 "Language-Team: deutsch <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: admin/groups/mailaddress/class_groupMail.inc:132
 #: admin/groups/mailaddress/class_groupMail.inc:135
@@ -133,6 +133,15 @@ msgstr "Allgemein"
 msgid "Mail address settings"
 msgstr "Mail-Adresseinstellungen"
 
+#: admin/groups/mailaddress/mailaddress.tpl:22
+#, php-format
+msgid ""
+"Please specify a mail address pattern (e.g., &#123;%cn&#124;@your-domain."
+"com) or leave empty."
+msgstr ""
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. {%cn}@your-domain.com) oder das "
+"Feld freilassen."
+
 #: admin/groups/mailaddress/mailaddress.tpl:42
 #: admin/groups/mailaddress/paste_mailaddress.tpl:26
 msgid "Alternative addresses"
@@ -187,7 +196,7 @@ msgstr "Mail-Adressen von Benutzern verwalten"
 #: personal/mailaddress/class_mailAccount.inc:154
 #: personal/mailaddress/class_mailAccount.inc:434
 msgid "The to be added alias is not a valid email address!"
-msgstr ""
+msgstr "Der hinzugefügte Alias ist keine gültige E-Mail Adresse!"
 
 #: personal/mailaddress/class_mailAccount.inc:332
 msgid "Examples"
@@ -211,72 +220,62 @@ msgid "My account"
 msgstr "Mein Konto"
 
 #: personal/mailaddress/class_mailAccount.inc:543
-#, fuzzy
 msgid "Mail aliases"
-msgstr "Mail-Adresse"
+msgstr "Mail Aliase"
 
 #: personal/mailaddress/generic.tpl:1
 msgid "Mail Address Settings"
 msgstr "Mail-Adresseinstellungen"
 
 #: personal/mailaddress/generic.tpl:18
-#, fuzzy
 msgid "Users' Mail Address Scheme"
-msgstr "Mail-Adresse des Benutzers"
+msgstr "Mail-Adressschema für Benutzer"
 
 #: personal/mailaddress/generic.tpl:19
 msgid "Mail addresses"
 msgstr "Mail-Adresse"
 
+#: personal/mailaddress/generic.tpl:21
+msgid ""
+"Please specify a mail address pattern (e.g., &#123;%uid&#124;@your-domain."
+"com). Valid placeholders are: &#123;%uid&#124;, &#123;%givenName&#124; and "
+"&#123;%sn&#124;. For no action on the users' mail addresses, please leave "
+"empty."
+msgstr ""
+"Bitte ein Mail-Adressschema eingeben (z.Bsp. {%uid}@your-domain.com). "
+"Gültige Platzhalter sind: {%uid}, {%givenName} und {%sn}. Wenn die Mail-"
+"Adressen der Benutzer unverändert bleiben sollen, dieses Feld bitte "
+"freilassen."
+
 #: personal/mailaddress/generic.tpl:39
-#, fuzzy
 msgid "User's Mail Aliases"
-msgstr "Mail-Adresse des Benutzers"
+msgstr "Aliase des Benutzer"
 
 #: personal/mailaddress/generic.tpl:40 personal/mailaddress/generic.tpl:42
 #: personal/mailaddress/generic.tpl:59 personal/mailaddress/copypaste.tpl:17
-#, fuzzy
 msgid "Alias addresses"
 msgstr "Alternative Adressen"
 
 #: personal/mailaddress/generic.tpl:49 personal/mailaddress/copypaste.tpl:25
-#, fuzzy
 msgid "Email alias address"
-msgstr "Mail-Adresse"
+msgstr "Mail-Alias"
 
 #: personal/mailaddress/generic.tpl:52 personal/mailaddress/copypaste.tpl:28
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: personal/mailaddress/generic.tpl:58
-#, fuzzy
 msgid "Users' Mail Aliases"
-msgstr "Mail-Adresse des Benutzers"
+msgstr "Mail"
+
+#: personal/mailaddress/generic.tpl:61
+msgid "Mass editing of email aliases is not supported."
+msgstr "Das Mehrfachbearbeiten von Mail Aliasen wird nicht unterstützt."
 
 #: personal/mailaddress/copypaste.tpl:13
-#, fuzzy
 msgid "User Mail Aliases"
-msgstr "Mail-Adresse des Benutzers"
+msgstr "Mail-Aliase des Benutzers"
 
 #: personal/mailaddress/copypaste.tpl:15
-#, fuzzy
 msgid "Mail Aliases"
-msgstr "Mail-Adresse"
-
-#~ msgid ""
-#~ "Please specify a mail address pattern (e.g., &#123;%cn&#124;@your-domain."
-#~ "com) or leave empty."
-#~ msgstr ""
-#~ "Bitte ein Mail-Adressschema eingeben (z.Bsp. {%cn}@your-domain.com) oder "
-#~ "das Feld freilassen."
-
-#~ msgid ""
-#~ "Please specify a mail address pattern (e.g., &#123;%uid&#124;@your-domain."
-#~ "com). Valid placeholders are: &#123;%uid&#124;, &#123;%givenName&#124; "
-#~ "and &#123;%sn&#124;. For no action on the users' mail addresses, please "
-#~ "leave empty."
-#~ msgstr ""
-#~ "Bitte ein Mail-Adressschema eingeben (z.Bsp. {%uid}@your-domain.com). "
-#~ "Gültige Platzhalter sind: {%uid}, {%givenName} und {%sn}. Wenn die Mail-"
-#~ "Adressen der Benutzer unverändert bleiben sollen, dieses Feld bitte "
-#~ "freilassen."
+msgstr "Mail-Aliase"
