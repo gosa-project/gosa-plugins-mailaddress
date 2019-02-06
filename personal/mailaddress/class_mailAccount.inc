@@ -22,6 +22,7 @@ Functions :
  - remove_from_parent()
  - save()
  - check()
+ - sanitize_email()
  - adapt_from_template($dn, $skip= array())
  - getCopyDialog()
  - saveCopyDialog()
@@ -43,6 +44,8 @@ class mailAccount extends plugin {
 
     /* GOsa mail attributes */
     var $mail="";
+    var $alias=array();
+    var $aliasWidget;
 
     /* GOsa mail account attributes filled with dummy values,
      * required due to gosaMailAccount objectclass requirements.
@@ -51,7 +54,7 @@ class mailAccount extends plugin {
     var $gosaMailDeliveryMode="[         ]";
 
     /* Used LDAP attributes && classes */
-    var $attributes=array ("mail","gosaMailServer","gosaMailDeliveryMode",);
+    var $attributes=array ("mail", "alias", "gosaMailServer","gosaMailDeliveryMode",);
     var $objectclasses=array ("gosaMailAccount");
     var $multiple_support=TRUE;
 
@@ -74,6 +77,23 @@ class mailAccount extends plugin {
                 $this->$attr=$this->attrs[$attr][0];
             }
         }
+
+        /* Get aliases list */
+        if (isset($this->attrs['alias'])){
+            $this->alias = array();
+            for ($i= 0; $i<$this->attrs['alias']['count']; $i++){
+                if (trim($this->attrs['alias'][$i]) !== "") {
+                    $this->alias[trim($this->attrs['alias'][$i])] = trim($this->attrs['alias'][$i]);
+                }
+            }
+        }
+
+        $this->aliasWidget= new sortableListing($this->alias);
+        $this->aliasWidget->setDeleteable(true);
+        $this->aliasWidget->setInstantDelete(true);
+        $this->aliasWidget->setColspecs(array('*'));
+        $this->aliasWidget->setWidth("35em");
+        $this->aliasWidget->setHeight("120px");
 
         /* Remember account status
          */
@@ -121,6 +141,24 @@ class mailAccount extends plugin {
             }
         }
 
+        if (!$this->multiple_support_active) {
+
+            $this->aliasWidget->setACL($this->getacl('alias'));
+            $this->aliasWidget->update();
+
+            /* Handle add for aliases */
+            if (isset($_POST['add_alias']) && isset($_POST['single_alias'])) {
+                $val= get_post('single_alias');
+                if (tests::is_email($val, $this->is_template)) {
+                    $this->aliasWidget->addEntry($val, NULL, $val);
+                } else {
+                    msg_dialog::display(_("Error"), _("The to be added alias is not a valid email address!"), ERROR_DIALOG);
+                }
+            }
+        }
+
+        //FIXME: why has this been commented out???
+
         /*    if(isset($_POST['edit_apply'])){
               if(isset($_POST['mail'])){
                   $this->mail = get_post('mail');
@@ -136,8 +174,15 @@ class mailAccount extends plugin {
         foreach ($tmp['plProvidedAcls'] as $name=>$transl) {
             $smarty->assign ("$name"."ACL",$this->getacl ($name));
         }
-        foreach ($this->attributes as $attr) {
-            $smarty->assign ($attr,set_post ($this->$attr));
+
+       foreach ($this->attributes as $attr) {
+            if ($attr !== "alias") {
+                $smarty->assign ($attr,set_post ($this->$attr));
+            }
+        }
+
+        if (!$this->multiple_support_active) {
+            $smarty->assign("aliasWidget", $this->aliasWidget->render());
         }
 
         $smarty->assign ("multiple_support",$this->multiple_support_active);
@@ -158,16 +203,16 @@ class mailAccount extends plugin {
                 $this->mail=get_post ('mail');
             }
 
-            /* Save ldap attributes */
-            $mail=$this->mail;
-            $gosaMailServer=$this->gosaMailServer;
-            $gosaMailDeliveryMode=$this->gosaMailDeliveryMode;
             plugin::save_object ();
-            if ($this->initially_was_account&&!$this->is_template) {
-                $this->mail=$mail;
-                $this->gosaMailServer=$gosaMailServer;
-                $this->gosaMailDeliveryMode=$gosaMailDeliveryMode;
-            }
+
+           if (!$this->multiple_support_active) {
+
+               /* Sync lists */
+                $this->aliasWidget->save_object();
+                if ($this->aliasWidget->isModified()) {
+                    $this->alias = array_values($this->aliasWidget->getMaintainedData());
+               }
+           }
         }
     }
 
@@ -221,10 +266,21 @@ class mailAccount extends plugin {
             $this->mail=trim($this->mail);
         }
 
+        //FIXME: same for alias array
+
         /* Call parents save to prepare $this->attrs */
         plugin::save ();
 
-        $this->attrs['mail']=$this->mail;
+        $this->attrs['mail'] = $this->mail;
+
+        if (!$this->multiple_support_active) {
+            if (count($this->alias) > 0) {
+                $this->attrs['alias'] = array();
+                foreach ($this->alias as $single_alias) {
+                    $this->attrs['alias'][] = $single_alias;
+                }
+            }
+        }
         $this->attrs['gosaMailServer']=$this->gosaMailServer;
         $this->attrs['gosaMailDeliveryMode']=$this->gosaMailDeliveryMode;
 
@@ -292,7 +348,7 @@ class mailAccount extends plugin {
             }
         }
 
-        /* Check if this mail address is already in use */
+        /* Check if the mail address is already in use */
         $ldap->cd ($this->config->current['BASE']);
         $filter="(&(!(objectClass=gosaUserTemplate))(!(uid=".$this->uid."))"."(objectClass=gosaMailAccount)"."(|(mail=".$mail.")(alias=".$mail.")(gosaMailAlternateAddress=".$mail.")))";
         $ldap->search ($filter,array ("uid","cn"));
@@ -308,7 +364,39 @@ class mailAccount extends plugin {
             $message[]=msgPool::duplicated (_ ("Mail address"))."<br><br><i>$addon</i>";
         }
 
+        /* FIXME: discusss if alias checks are required here, too.
+         *  NOTE: we already check in execute(), whether the added address
+         *        is a valid email address, remains the duplicates check...
+         *
+         *  pros:
+         *    - duplicate use of aliases is nice to have for
+         *      deputy roles
+         *    - also nice for people migrating from one alias role
+         *      to another
+         *
+         *  cons:
+         *    - potential security issue, if user is allowed to edit
+         *      his/her/their mail account (which is normally forbidden)
+         *
+         */
+
         return ($message);
+    }
+
+    /*! \brief  Sanitize an email address
+     */
+    function sanitize_email ($addr) {
+
+        $addr = rewrite ($addr);
+
+        // Remove non ASCII charcters
+        $addr=iconv ('UTF-8','US-ASCII//TRANSLIT',$addr);
+        $addr=preg_replace ('/[^(\x20-\x7F)]*/','',$addr);
+
+        // No spaces are allowed here
+        $addr=preg_replace ("/[ ]/","",$addr);
+
+        return $addr;
     }
 
 
@@ -317,30 +405,49 @@ class mailAccount extends plugin {
     function adapt_from_template ($dn,$skip=array ()) {
         plugin::adapt_from_template ($dn,$skip);
 
-        $this->mail=rewrite ($this->mail);
+        # sanitize mail address
+        $this->mail = $this->sanitize_email ($this->mail);
 
-        // Remove non ASCII charcters
-        $this->mail=iconv ('UTF-8','US-ASCII//TRANSLIT',$this->mail);
-        $this->mail=preg_replace ('/[^(\x20-\x7F)]*/','',$this->mail);
+        $this->aliasWidget->setACL($this->getacl('alias'));
+        $this->aliasWidget->update();
 
-        // No spaces are allowed here
-        $this->mail=preg_replace ("/[ ]/","",$this->mail);
+        # sanitize all alias addresses
+        $tmp = array();
+        foreach ($this->alias as $alias) {
+            $tmp[] = $this->sanitize_email($alias);
+        }
+        $this->alias = $tmp;
+
     }
 
 
     /*! \brief  Creates the mail part for the copy & paste dialog
      */
     function getCopyDialog () {
-        if (!$this->is_account)
+        if (!$this->is_account) {
             return ("");
+        }
+
+        /* Handle add for aliases */
+        if (isset($_POST['add_alias']) && isset($_POST['single_alias'])) {
+            $val= get_post('single_alias');
+            if (tests::is_email($val)) {
+                $this->aliasWidget->addEntry($val, NULL, $val);
+            } else {
+                msg_dialog::display(_("Error"), _("The to be added alias is not a valid email address!"), ERROR_DIALOG);
+            }
+        }
+
         $smarty=get_smarty ();
         $smarty->assign ("mail",$this->mail);
+        $smarty->assign("aliasWidget", $this->aliasWidget->render());
 
         $str=$smarty->fetch (get_template_path ("copypaste.tpl",TRUE,dirname (__FILE__)));
 
         $ret=array ();
         $ret['status']="";
         $ret['string']=$str;
+
         return ($ret);
     }
 
@@ -354,6 +461,11 @@ class mailAccount extends plugin {
         if (isset ($_POST['mail'])) {
             $this->mail=get_post ('mail');
         }
+
+        if (isset ($_POST['alias'])) {
+            $this->alias=get_post ('alias');
+        }
+
     }
 
     function multiple_execute () {
@@ -414,13 +526,26 @@ class mailAccount extends plugin {
         }
     }
 
-
     /*! \brief  ACL settings
      */
     static function plInfo () {
-        return (array ("plShortName"=>_ ("Mail"),"plDescription"=>_ ("User Mail Address"),"plSelfModify"=>TRUE,"plDepends"=>array ("user"),// This plugin depends on
-        "plPriority"=>4,// Position in tabs
-        "plSection"=>array ("personal"=>_ ("My account")),"plCategory"=>array ("users"),"plOptions"=>array (),"plRequirements"=>array ('onFailureDisablePlugin'=>array (get_class ())),"plProvidedAcls"=>array ("mail"=>_ ("Mail address"),),));
+        return (array (
+            "plShortName"    => _("Mail"),
+            "plDescription"  => _("User Mail Address"),
+            "plSelfModify"   => TRUE,
+            "plDepends"      => array ("user"),           // This plugin depends on
+            "plPriority"     => 4,                        // Position in tabs
+            "plSection"      => array (
+                                   "personal"   => _("My account"),
+            ),
+            "plCategory"     => array ("users"),
+            "plOptions"      => array (),
+            "plRequirements" => array ('onFailureDisablePlugin'=>array (get_class ())),
+            "plProvidedAcls" => array (
+                                   "mail"       => _("Mail address"),
+                                   "alias"      => _("Mail aliases"),
+            ),
+        ));
     }
 }
 
