@@ -195,7 +195,7 @@ class mailAccount extends plugin
         }
 
         $smarty->assign("multiple_support", $this->multiple_support_active);
-        if ($this->multiple_support - active) {
+        if ($this->multiple_support_active) {
             $smarty->assign("multi_mail", array_slice($this->multi_attrs_all['mail'], 1));
         }
         return ($display . $smarty->fetch(get_template_path("generic.tpl", TRUE, dirname(__FILE__))));
