@@ -72,7 +72,7 @@ class mailgroup extends plugin
 
     function __construct(&$config, $dn = NULL, $base_object = NULL)
     {
-        plugin::__construct($config, $dn);
+        parent::__construct($config, $dn);
 
         /* Get attributes from parent object
          */
@@ -108,7 +108,7 @@ class mailgroup extends plugin
     function execute()
     {
         /* Call parent execute */
-        plugin::execute();
+        parent::execute();
 
         /* Log view */
         if ($this->is_account && !$this->view_logged) {
@@ -285,7 +285,7 @@ class mailgroup extends plugin
         }
 
         /* Remove GOsa attributes */
-        plugin::remove_from_parent();
+        parent::remove_from_parent();
 
         /* Zero arrays */
         $this->attrs['gosaMailAlternateAddress'] = array();
@@ -321,7 +321,7 @@ class mailgroup extends plugin
             $gosaMailServer = $this->gosaMailServer;
             $gosaMailDeliveryMode = $this->gosaMailDeliveryMode;
 
-            plugin::save_object();
+            parent::save_object();
 
             if ($this->initially_was_account && !$this->is_template) {
                 $this->mail = $mail;
@@ -342,7 +342,7 @@ class mailgroup extends plugin
         $this->mail = trim(strtolower($this->mail));
 
         /* Call parents save to prepare $this->attrs */
-        plugin::save();
+        parent::save();
 
         /* Save arrays */
         $this->attrs['gosaMailAlternateAddress'] = $this->gosaMailAlternateAddress;
@@ -382,7 +382,7 @@ class mailgroup extends plugin
         $ldap = $this->config->get_ldap_link();
 
         /* Call common method to give check the hook */
-        $message = plugin::check();
+        $message = parent::check();
 
         /* Mail address checks */
         $mail = $this->mail;
@@ -410,7 +410,7 @@ class mailgroup extends plugin
     /* Adapt from template, using 'dn' */
     function adapt_from_template($dn, $skip = array())
     {
-        plugin::adapt_from_template($dn, $skip);
+        parent::adapt_from_template($dn, $skip);
 
         // Remove non ASCII charcters
         $this->mail = iconv('UTF-8', 'US-ASCII//TRANSLIT', $this->mail);
@@ -497,7 +497,7 @@ class mailgroup extends plugin
 
     function PrepareForCopyPaste($source)
     {
-        plugin::PrepareForCopyPaste($source);
+        parent::PrepareForCopyPaste($source);
 
         /* Reset alternate mail addresses */
         $this->gosaMailAlternateAddress = array();
@@ -519,7 +519,7 @@ class mailgroup extends plugin
 
     function init_multiple_support($attrs, $all)
     {
-        plugin::init_multiple_support($attrs, $all);
+        parent::init_multiple_support($attrs, $all);
 
         $this->gosaMailForwardingAddress = array();
         if (isset($attrs['gosaMailForwardingAddress'])) {
@@ -541,14 +541,14 @@ class mailgroup extends plugin
     function multiple_save_object()
     {
         if (isset($_POST['multiple_mail_group_posted'])) {
-            plugin::multiple_save_object();
+            parent::multiple_save_object();
         }
     }
 
 
     function multiple_check()
     {
-        $message = plugin::multiple_check();
+        $message = parent::multiple_check();
 
         /* Mail address checks */
         $mail_pattern = $this->mail;
@@ -565,7 +565,7 @@ class mailgroup extends plugin
     /* Return selected values for multiple edit */
     function get_multi_edit_values()
     {
-        $ret = plugin::get_multi_edit_values();
+        $ret = parent::get_multi_edit_values();
         $ret['Forward_some'] = $this->gosaMailForwardingAddress_Some;
         $ret['Forward_all'] = $this->gosaMailForwardingAddress;
         $ret['mail'] = $this->mail;
@@ -602,7 +602,7 @@ class mailgroup extends plugin
             $mail = $this->mail;
         }
 
-        plugin::set_multi_edit_values($attrs);
+        parent::set_multi_edit_values($attrs);
 
         if (!$mail_pattern) {
             $this->mail = $mail;

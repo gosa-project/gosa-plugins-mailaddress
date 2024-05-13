@@ -67,7 +67,7 @@ class mailAccount extends plugin
      */
     function __construct(&$config, $dn = NULL)
     {
-        plugin::__construct($config, $dn);
+        parent::__construct($config, $dn);
 
         /* Get attributes from parent object
          */
@@ -105,7 +105,7 @@ class mailAccount extends plugin
     {
 
         /* Call parent execute */
-        $display = plugin::execute();
+        $display = parent::execute();
 
         /* Log view */
         if ($this->is_account && !$this->view_logged) {
@@ -213,7 +213,7 @@ class mailAccount extends plugin
                 $this->mail = get_post('mail');
             }
 
-            plugin::save_object();
+            parent::save_object();
 
             if (!$this->multiple_support_active) {
 
@@ -247,7 +247,7 @@ class mailAccount extends plugin
         }
 
         /* Remove GOsa attributes */
-        plugin::remove_from_parent();
+        parent::remove_from_parent();
 
         $this->cleanup();
 
@@ -281,7 +281,7 @@ class mailAccount extends plugin
         //FIXME: same for alias array
 
         /* Call parents save to prepare $this->attrs */
-        plugin::save();
+        parent::save();
 
         $this->attrs['mail'] = $this->mail;
 
@@ -334,7 +334,7 @@ class mailAccount extends plugin
         $ldap = $this->config->get_ldap_link();
 
         /* Call common method to give check the hook */
-        $message = plugin::check();
+        $message = parent::check();
 
         /* Mail address checks */
         $mail = $this->mail;
@@ -413,7 +413,7 @@ class mailAccount extends plugin
      */
     function adapt_from_template($dn, $skip = array())
     {
-        plugin::adapt_from_template($dn, $skip);
+        parent::adapt_from_template($dn, $skip);
 
         # sanitize mail address
         $this->mail = $this->sanitize_email($this->mail);
@@ -485,7 +485,7 @@ class mailAccount extends plugin
 
     function multiple_check()
     {
-        $message = plugin::multiple_check();
+        $message = parent::multiple_check();
 
         if (empty($this->gosaMailServer) && in_array_strict("gosaMailServer", $this->multi_boxes)) {
             $message[] = msgPool::noserver(_("Mail"));
@@ -504,7 +504,7 @@ class mailAccount extends plugin
 
     function get_multi_edit_values()
     {
-        $ret = plugin::get_multi_edit_values();
+        $ret = parent::get_multi_edit_values();
         $ret['mail'] = $this->mail;
         return $ret;
     }
@@ -532,7 +532,7 @@ class mailAccount extends plugin
             $mail = $this->mail;
         }
 
-        plugin::set_multi_edit_values($attrs);
+        parent::set_multi_edit_values($attrs);
 
         if (!$mail_pattern) {
             $this->mail = $mail;
