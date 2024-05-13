@@ -39,9 +39,9 @@ class mailAccount extends plugin
     /* Definitions */
     var $plHeadline = "Mail Address";
     var $plDescription = "Manage user mail address";
-    var $view_logged = FALSE;
-    var $is_account = FALSE;
-    var $initially_was_account = FALSE;
+    var $view_logged = false;
+    var $is_account = false;
+    var $initially_was_account = false;
 
     /* GOsa mail attributes */
     var $mail = "";
@@ -98,7 +98,7 @@ class mailAccount extends plugin
 
         /* Remember account status
          */
-        $this->initialy_was_account = $this->is_account;
+        $this->initially_was_account = $this->is_account;
     }
 
     function execute()
@@ -119,7 +119,7 @@ class mailAccount extends plugin
 
         if (isset($_POST['modify_state'])) {
             if ($this->is_account && $this->acl_is_removeable()) {
-                $this->is_account = FALSE;
+                $this->is_account = false;
             } elseif (!$this->is_account && $this->acl_is_createable()) {
                 $this->is_account = TRUE;
             }
