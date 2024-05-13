@@ -34,61 +34,62 @@ Functions :
 
  */
 
-class mailAccount extends plugin {
+class mailAccount extends plugin
+{
     /* Definitions */
-    var $plHeadline="Mail Address";
-    var $plDescription="Manage user mail address";
-    var $view_logged=FALSE;
-    var $is_account=FALSE;
-    var $initially_was_account=FALSE;
+    var $plHeadline = "Mail Address";
+    var $plDescription = "Manage user mail address";
+    var $view_logged = FALSE;
+    var $is_account = FALSE;
+    var $initially_was_account = FALSE;
 
     /* GOsa mail attributes */
-    var $mail="";
-    var $alias=array();
+    var $mail = "";
+    var $alias = array();
     var $aliasWidget;
 
     /* GOsa mail account attributes filled with dummy values,
      * required due to gosaMailAccount objectclass requirements.
      */
-    var $gosaMailServer="NULL";
-    var $gosaMailDeliveryMode="[         ]";
+    var $gosaMailServer = "NULL";
+    var $gosaMailDeliveryMode = "[         ]";
 
     /* Used LDAP attributes && classes */
-    var $attributes=array ("mail", "alias", "gosaMailServer","gosaMailDeliveryMode",);
-    var $objectclasses=array ("gosaMailAccount");
-    var $multiple_support=TRUE;
+    var $attributes = array("mail", "alias", "gosaMailServer", "gosaMailDeliveryMode",);
+    var $objectclasses = array("gosaMailAccount");
+    var $multiple_support = TRUE;
 
-    var $uid="";
-    var $cn="";
+    var $uid = "";
+    var $cn = "";
 
 
     /*! \brief  Initialize the mailAccount
      */
-    function __construct (&$config,$dn=NULL) {
-        plugin::__construct ($config,$dn);
+    function __construct(&$config, $dn = NULL)
+    {
+        plugin::__construct($config, $dn);
 
         /* Get attributes from parent object
          */
-        foreach (array ("uid","cn") as $attr) {
-            if (isset ($this->parent->by_object['group'])&&isset ($this->parent->by_object['group']->$attr)) {
-                $this->$attr=&$this->parent->by_object['group']->$attr;
-            }
-            elseif (isset ($this->attrs[$attr])) {
-                $this->$attr=$this->attrs[$attr][0];
+        foreach (array("uid", "cn") as $attr) {
+            if (isset($this->parent->by_object['group']) && isset($this->parent->by_object['group']->$attr)) {
+                $this->$attr = &$this->parent->by_object['group']->$attr;
+            } elseif (isset($this->attrs[$attr])) {
+                $this->$attr = $this->attrs[$attr][0];
             }
         }
 
         /* Get aliases list */
-        if (isset($this->attrs['alias'])){
+        if (isset($this->attrs['alias'])) {
             $this->alias = array();
-            for ($i= 0; $i<$this->attrs['alias']['count']; $i++){
+            for ($i = 0; $i < $this->attrs['alias']['count']; $i++) {
                 if (trim($this->attrs['alias'][$i]) !== "") {
                     $this->alias[trim($this->attrs['alias'][$i])] = trim($this->attrs['alias'][$i]);
                 }
             }
         }
 
-        $this->aliasWidget= new sortableListing($this->alias);
+        $this->aliasWidget = new sortableListing($this->alias);
         $this->aliasWidget->setDeleteable(true);
         $this->aliasWidget->setInstantDelete(true);
         $this->aliasWidget->setColspecs(array('*'));
@@ -97,54 +98,53 @@ class mailAccount extends plugin {
 
         /* Remember account status
          */
-        $this->initialy_was_account=$this->is_account;
+        $this->initialy_was_account = $this->is_account;
     }
 
-    function execute () {
+    function execute()
+    {
 
         /* Call parent execute */
-        $display=plugin::execute ();
+        $display = plugin::execute();
 
         /* Log view */
-        if ($this->is_account&&!$this->view_logged) {
-            $this->view_logged=TRUE;
-            new log ("view","users/".get_class ($this),$this->dn);
+        if ($this->is_account && !$this->view_logged) {
+            $this->view_logged = TRUE;
+            new log("view", "users/" . get_class($this), $this->dn);
         }
 
         /****************
           Account status
          ****************/
 
-        if (isset ($_POST['modify_state'])) {
-            if ($this->is_account&&$this->acl_is_removeable ()) {
-                $this->is_account=FALSE;
-            }
-            elseif (!$this->is_account&&$this->acl_is_createable ()) {
-                $this->is_account=TRUE;
+        if (isset($_POST['modify_state'])) {
+            if ($this->is_account && $this->acl_is_removeable()) {
+                $this->is_account = FALSE;
+            } elseif (!$this->is_account && $this->acl_is_createable()) {
+                $this->is_account = TRUE;
             }
         }
 
         if (!$this->multiple_support_active) {
-            if (!$this->is_account&&$this->parent===NULL) {
+            if (!$this->is_account && $this->parent === NULL) {
                 switch ($theme) {
                     case 'classic':
-                      $symbol = "<img alt='' src='images/small-error.png' align='middle'>";
-                      break;
-                    
+                        $symbol = "<img alt='' src='images/small-error.png' align='middle'>";
+                        break;
+
                     default:
-                      $symbol = "<i class='material-icons'>report</i>";
-                      break;
-                  }
-                  $display = "<div class='valign-wrapper'>".$symbol.msgPool::noValidExtension(_("Mail"))."</div>";
-                  $display.= back_to_main();
-                  return $display;
-            }
-            if ($this->parent!==NULL) {
-                if ($this->is_account) {
-                    $display=$this->show_disable_header (msgPool::removeFeaturesButton (_ ("Mail")),msgPool::featuresEnabled (_ ("Mail")));
+                        $symbol = "<i class='material-icons'>report</i>";
+                        break;
                 }
-                else {
-                    $display=$this->show_enable_header (msgPool::addFeaturesButton (_ ("Mail")),msgPool::featuresDisabled (_ ("Mail")));
+                $display = "<div class='valign-wrapper'>" . $symbol . msgPool::noValidExtension(_("Mail")) . "</div>";
+                $display .= back_to_main();
+                return $display;
+            }
+            if ($this->parent !== NULL) {
+                if ($this->is_account) {
+                    $display = $this->show_disable_header(msgPool::removeFeaturesButton(_("Mail")), msgPool::featuresEnabled(_("Mail")));
+                } else {
+                    $display = $this->show_enable_header(msgPool::addFeaturesButton(_("Mail")), msgPool::featuresDisabled(_("Mail")));
                     return ($display);
                 }
             }
@@ -157,7 +157,7 @@ class mailAccount extends plugin {
 
             /* Handle add for aliases */
             if (isset($_POST['add_alias']) && isset($_POST['single_alias'])) {
-                $val= get_post('single_alias');
+                $val = get_post('single_alias');
                 if (tests::is_email($val, $this->is_template)) {
                     $this->aliasWidget->addEntry($val, NULL, $val);
                 } else {
@@ -177,16 +177,16 @@ class mailAccount extends plugin {
         /****************
           SMARTY- Assign smarty variables
          ****************/
-        $smarty=get_smarty ();
+        $smarty = get_smarty();
 
-        $tmp=$this->plInfo ();
-        foreach ($tmp['plProvidedAcls'] as $name=>$transl) {
-            $smarty->assign ("$name"."ACL",$this->getacl ($name));
+        $tmp = $this->plInfo();
+        foreach ($tmp['plProvidedAcls'] as $name => $transl) {
+            $smarty->assign("$name" . "ACL", $this->getacl($name));
         }
 
-       foreach ($this->attributes as $attr) {
+        foreach ($this->attributes as $attr) {
             if ($attr !== "alias") {
-                $smarty->assign ($attr,set_post ($this->$attr));
+                $smarty->assign($attr, set_post($this->$attr));
             }
         }
 
@@ -194,91 +194,94 @@ class mailAccount extends plugin {
             $smarty->assign("aliasWidget", $this->aliasWidget->render());
         }
 
-        $smarty->assign ("multiple_support",$this->multiple_support_active);
-        if ($this->multiple_support-active) {
-            $smarty->assign ("multi_mail",array_slice ($this->multi_attrs_all['mail'],1));
+        $smarty->assign("multiple_support", $this->multiple_support_active);
+        if ($this->multiple_support - active) {
+            $smarty->assign("multi_mail", array_slice($this->multi_attrs_all['mail'], 1));
         }
-        return ($display.$smarty->fetch (get_template_path ("generic.tpl",TRUE,dirname (__FILE__))));
+        return ($display . $smarty->fetch(get_template_path("generic.tpl", TRUE, dirname(__FILE__))));
     }
 
 
     /* Save data to object */
-    function save_object () {
-        if (isset ($_POST['mailAccountTab'])) {
+    function save_object()
+    {
+        if (isset($_POST['mailAccountTab'])) {
 
             /* Acquire updated mail address
              */
-            if (isset ($_POST['mail'])) {
-                $this->mail=get_post ('mail');
+            if (isset($_POST['mail'])) {
+                $this->mail = get_post('mail');
             }
 
-            plugin::save_object ();
+            plugin::save_object();
 
-           if (!$this->multiple_support_active) {
+            if (!$this->multiple_support_active) {
 
-               /* Sync lists */
+                /* Sync lists */
                 $this->aliasWidget->save_object();
                 if ($this->aliasWidget->isModified()) {
                     $this->alias = array_values($this->aliasWidget->getMaintainedData());
-               }
-           }
+                }
+            }
         }
     }
 
 
     /*! \brief  Removes the mailAccount extension from ldap
      */
-    function remove_from_parent () {
+    function remove_from_parent()
+    {
         /* Cancel if there's nothing to do here */
         if (!$this->initially_was_account) {
             return;
         }
 
         // Do NOT remove the mail attribute while it is used in the Fax Account.
-        if (isset ($this->parent->by_object['gofaxAccount'])) {
-            $fax=$this->parent->by_object['gofaxAccount'];
+        if (isset($this->parent->by_object['gofaxAccount'])) {
+            $fax = $this->parent->by_object['gofaxAccount'];
 
             // Fax delivery to the mail account is activated, keep the mail attribute.
-            if ($fax->goFaxDeliveryMode&32) {
-                $this->attributes=array_remove_entries (array ('mail'),$this->attributes);
+            if ($fax->goFaxDeliveryMode & 32) {
+                $this->attributes = array_remove_entries(array('mail'), $this->attributes);
             }
         }
 
         /* Remove GOsa attributes */
-        plugin::remove_from_parent ();
+        plugin::remove_from_parent();
 
-        $this->cleanup ();
+        $this->cleanup();
 
-        @DEBUG (DEBUG_LDAP,__LINE__,__FUNCTION__,__FILE__,$this->attributes,"Save");
-        $ldap=$this->config->get_ldap_link ();
-        $ldap->cd ($this->dn);
-        $ldap->modify ($this->attrs);
+        @DEBUG(DEBUG_LDAP, __LINE__, __FUNCTION__, __FILE__, $this->attributes, "Save");
+        $ldap = $this->config->get_ldap_link();
+        $ldap->cd($this->dn);
+        $ldap->modify($this->attrs);
 
         /* Add "view" to logging class */
-        new log ("remove","users/".get_class ($this),$this->dn,array_keys ($this->attrs),$ldap->get_error ());
-        if (!$ldap->success ()) {
-            msg_dialog::display (_ ("LDAP error"),msgPool::ldaperror ($ldap->get_error (),$this->dn,LDAP_MOD,get_class ()));
+        new log("remove", "users/" . get_class($this), $this->dn, array_keys($this->attrs), $ldap->get_error());
+        if (!$ldap->success()) {
+            msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, get_class()));
         }
 
         /* Optionally execute a command after we are done */
-        $this->handle_post_events ("remove",array ("uid"=>$this->uid));
+        $this->handle_post_events("remove", array("uid" => $this->uid));
     }
 
 
     /*! \brief  Save the mailAccount settings to the ldap database.
      */
-    function save () {
+    function save()
+    {
 
-        $ldap=$this->config->get_ldap_link ();
+        $ldap = $this->config->get_ldap_link();
 
         if ($this->initially_was_account) {
-            $this->mail=trim($this->mail);
+            $this->mail = trim($this->mail);
         }
 
         //FIXME: same for alias array
 
         /* Call parents save to prepare $this->attrs */
-        plugin::save ();
+        plugin::save();
 
         $this->attrs['mail'] = $this->mail;
 
@@ -290,87 +293,83 @@ class mailAccount extends plugin {
                 }
             }
         }
-        $this->attrs['gosaMailServer']=$this->gosaMailServer;
-        $this->attrs['gosaMailDeliveryMode']=$this->gosaMailDeliveryMode;
+        $this->attrs['gosaMailServer'] = $this->gosaMailServer;
+        $this->attrs['gosaMailDeliveryMode'] = $this->gosaMailDeliveryMode;
 
         /* Save data to LDAP */
-        $ldap->cd ($this->dn);
-        $this->cleanup ();
-        $ldap->modify ($this->attrs);
+        $ldap->cd($this->dn);
+        $this->cleanup();
+        $ldap->modify($this->attrs);
 
-        if (!$ldap->success ()) {
-            msg_dialog::display (_ ("LDAP error"),msgPool::ldaperror ($ldap->get_error (),$this->dn,LDAP_MOD,get_class ()));
+        if (!$ldap->success()) {
+            msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, get_class()));
         }
 
         /* Log last action */
         if ($this->initially_was_account) {
-            new log ("modify","users/".get_class ($this),$this->dn,array_keys ($this->attrs),$ldap->get_error ());
-        }
-        else {
-            new log ("create","users/".get_class ($this),$this->dn,array_keys ($this->attrs),$ldap->get_error ());
+            new log("modify", "users/" . get_class($this), $this->dn, array_keys($this->attrs), $ldap->get_error());
+        } else {
+            new log("create", "users/" . get_class($this), $this->dn, array_keys($this->attrs), $ldap->get_error());
         }
 
         /* Optionally execute a command after we are done */
-        if ($this->initially_was_account==$this->is_account) {
+        if ($this->initially_was_account == $this->is_account) {
             if ($this->is_modified) {
-                $this->handle_post_events ("modify",array ("uid"=>$this->uid));
+                $this->handle_post_events("modify", array("uid" => $this->uid));
             }
-        }
-        else {
-            $this->handle_post_events ("add",array ("uid"=>$this->uid));
+        } else {
+            $this->handle_post_events("add", array("uid" => $this->uid));
         }
     }
 
 
     /*! \brief  Check given values
      */
-    function check () {
+    function check()
+    {
         if (!$this->is_account) {
-            return (array ());
+            return (array());
         }
 
-        $ldap=$this->config->get_ldap_link ();
+        $ldap = $this->config->get_ldap_link();
 
         /* Call common method to give check the hook */
-        $message=plugin::check ();
+        $message = plugin::check();
 
         /* Mail address checks */
-        $mail=$this->mail;
+        $mail = $this->mail;
 
-        if (empty ($mail)) {
+        if (empty($mail)) {
             if ($this->is_template) {
-                $message[]=msgPool::required (_ ("Mail address"))."<br><br><b>"._ ("Examples").":</b> <i>{%givenName}.{%sn}@your-domain.com</i> "._ ("or")." <i>{%uid}@your-domain.com</i>";
-            }
-            else {
-                $message[]=msgPool::required (_ ("Mail address"));
+                $message[] = msgPool::required(_("Mail address")) . "<br><br><b>" . _("Examples") . ":</b> <i>{%givenName}.{%sn}@your-domain.com</i> " . _("or") . " <i>{%uid}@your-domain.com</i>";
+            } else {
+                $message[] = msgPool::required(_("Mail address"));
             }
         }
 
         if ($this->is_template) {
-            if (!tests::is_email ($mail,TRUE)) {
-                $message[]=msgPool::invalid (_ ("Mail address"),"","","{%givenName}.{%sn}@your-domain.com");
+            if (!tests::is_email($mail, TRUE)) {
+                $message[] = msgPool::invalid(_("Mail address"), "", "", "{%givenName}.{%sn}@your-domain.com");
             }
-        }
-        else {
-            if (!tests::is_email ($mail)) {
-                $message[]=msgPool::invalid (_ ("Mail address"),"","","your-address@your-domain.com");
+        } else {
+            if (!tests::is_email($mail)) {
+                $message[] = msgPool::invalid(_("Mail address"), "", "", "your-address@your-domain.com");
             }
         }
 
         /* Check if the mail address is already in use */
-        $ldap->cd ($this->config->current['BASE']);
-        $filter="(&(!(objectClass=gosaUserTemplate))(!(uid=".$this->uid."))"."(objectClass=gosaMailAccount)"."(|(mail=".$mail.")(alias=".$mail.")(gosaMailAlternateAddress=".$mail.")))";
-        $ldap->search ($filter,array ("uid","cn"));
-        if ($ldap->count ()!=0) {
-            $entry=$ldap->fetch ();
-            $addon="";
-            if (!isset ($entry['uid'])) {
-                $addon=sprintf (_ ("Address is already in use by group '%s'."),$entry['cn'][0]);
+        $ldap->cd($this->config->current['BASE']);
+        $filter = "(&(!(objectClass=gosaUserTemplate))(!(uid=" . $this->uid . "))" . "(objectClass=gosaMailAccount)" . "(|(mail=" . $mail . ")(alias=" . $mail . ")(gosaMailAlternateAddress=" . $mail . ")))";
+        $ldap->search($filter, array("uid", "cn"));
+        if ($ldap->count() != 0) {
+            $entry = $ldap->fetch();
+            $addon = "";
+            if (!isset($entry['uid'])) {
+                $addon = sprintf(_("Address is already in use by group '%s'."), $entry['cn'][0]);
+            } else {
+                $addon = sprintf(_("Address is already in use by user '%s'."), $entry['uid'][0]);
             }
-            else {
-                $addon=sprintf (_ ("Address is already in use by user '%s'."),$entry['uid'][0]);
-            }
-            $message[]=msgPool::duplicated (_ ("Mail address"))."<br><br><i>$addon</i>";
+            $message[] = msgPool::duplicated(_("Mail address")) . "<br><br><i>$addon</i>";
         }
 
         /* FIXME: discusss if alias checks are required here, too.
@@ -394,16 +393,17 @@ class mailAccount extends plugin {
 
     /*! \brief  Sanitize an email address
      */
-    function sanitize_email ($addr) {
+    function sanitize_email($addr)
+    {
 
-        $addr = rewrite ($addr);
+        $addr = rewrite($addr);
 
         // Remove non ASCII charcters
-        $addr=iconv ('UTF-8','US-ASCII//TRANSLIT',$addr);
-        $addr=preg_replace ('/[^(\x20-\x7F)]*/','',$addr);
+        $addr = iconv('UTF-8', 'US-ASCII//TRANSLIT', $addr);
+        $addr = preg_replace('/[^(\x20-\x7F)]*/', '', $addr);
 
         // No spaces are allowed here
-        $addr=preg_replace ("/[ ]/","",$addr);
+        $addr = preg_replace("/[ ]/", "", $addr);
 
         return $addr;
     }
@@ -411,11 +411,12 @@ class mailAccount extends plugin {
 
     /*! \brief  Adapt from template, using 'dn'
      */
-    function adapt_from_template ($dn,$skip=array ()) {
-        plugin::adapt_from_template ($dn,$skip);
+    function adapt_from_template($dn, $skip = array())
+    {
+        plugin::adapt_from_template($dn, $skip);
 
         # sanitize mail address
-        $this->mail = $this->sanitize_email ($this->mail);
+        $this->mail = $this->sanitize_email($this->mail);
 
         $this->aliasWidget->setACL($this->getacl('alias'));
         $this->aliasWidget->update();
@@ -426,20 +427,20 @@ class mailAccount extends plugin {
             $tmp[] = $this->sanitize_email($alias);
         }
         $this->alias = $tmp;
-
     }
 
 
     /*! \brief  Creates the mail part for the copy & paste dialog
      */
-    function getCopyDialog () {
+    function getCopyDialog()
+    {
         if (!$this->is_account) {
             return ("");
         }
 
         /* Handle add for aliases */
         if (isset($_POST['add_alias']) && isset($_POST['single_alias'])) {
-            $val= get_post('single_alias');
+            $val = get_post('single_alias');
             if (tests::is_email($val)) {
                 $this->aliasWidget->addEntry($val, NULL, $val);
             } else {
@@ -447,15 +448,15 @@ class mailAccount extends plugin {
             }
         }
 
-        $smarty=get_smarty ();
-        $smarty->assign ("mail",$this->mail);
+        $smarty = get_smarty();
+        $smarty->assign("mail", $this->mail);
         $smarty->assign("aliasWidget", $this->aliasWidget->render());
 
-        $str=$smarty->fetch (get_template_path ("copypaste.tpl",TRUE,dirname (__FILE__)));
+        $str = $smarty->fetch(get_template_path("copypaste.tpl", TRUE, dirname(__FILE__)));
 
-        $ret=array ();
-        $ret['status']="";
-        $ret['string']=$str;
+        $ret = array();
+        $ret['status'] = "";
+        $ret['string'] = $str;
 
         return ($ret);
     }
@@ -463,100 +464,101 @@ class mailAccount extends plugin {
 
     /*! \brief  save_object for copy&paste vars
      */
-    function saveCopyDialog () {
+    function saveCopyDialog()
+    {
         if (!$this->is_account)
             return;
 
-        if (isset ($_POST['mail'])) {
-            $this->mail=get_post ('mail');
+        if (isset($_POST['mail'])) {
+            $this->mail = get_post('mail');
         }
 
-        if (isset ($_POST['alias'])) {
-            $this->alias=get_post ('alias');
+        if (isset($_POST['alias'])) {
+            $this->alias = get_post('alias');
         }
-
     }
 
-    function multiple_execute () {
-        return ($this->execute ());
+    function multiple_execute()
+    {
+        return ($this->execute());
     }
 
-    function multiple_check () {
-        $message=plugin::multiple_check ();
+    function multiple_check()
+    {
+        $message = plugin::multiple_check();
 
-        if (empty ($this->gosaMailServer)&&in_array_strict ("gosaMailServer",$this->multi_boxes)) {
-            $message[]=msgPool::noserver (_ ("Mail"));
+        if (empty($this->gosaMailServer) && in_array_strict("gosaMailServer", $this->multi_boxes)) {
+            $message[] = msgPool::noserver(_("Mail"));
         }
 
         /* Mail address checks */
-        $mail_pattern=$this->mail;
+        $mail_pattern = $this->mail;
 
-        if (!empty ($mail_pattern)) {
-            if ( (!tests::is_email ($mail_pattern,TRUE))|| (!preg_match ('/^.*({%uid}|{%givenName}|{%sn}|{%cn}).*@.*$/i',$mail_pattern))) {
-                $message[]=msgPool::invalid (_ ("Mail address pattern"),"","","{%givenName}.{%sn}@your-domain.com")."<br><br><br>"._ ("Please make use of placeholders for the user part of the mail address.");
+        if (!empty($mail_pattern)) {
+            if ((!tests::is_email($mail_pattern, TRUE)) || (!preg_match('/^.*({%uid}|{%givenName}|{%sn}|{%cn}).*@.*$/i', $mail_pattern))) {
+                $message[] = msgPool::invalid(_("Mail address pattern"), "", "", "{%givenName}.{%sn}@your-domain.com") . "<br><br><br>" . _("Please make use of placeholders for the user part of the mail address.");
             }
         }
         return ($message);
     }
 
-    function get_multi_edit_values () {
-        $ret=plugin::get_multi_edit_values ();
-        $ret['mail']=$this->mail;
+    function get_multi_edit_values()
+    {
+        $ret = plugin::get_multi_edit_values();
+        $ret['mail'] = $this->mail;
         return $ret;
     }
 
-    function set_multi_edit_values ($attrs) {
+    function set_multi_edit_values($attrs)
+    {
         /* Replace placeholders in mail address patterns */
-        $mail_pattern=$attrs['mail'];
+        $mail_pattern = $attrs['mail'];
 
         if ($mail_pattern) {
-            foreach (array ("sn","givenName","uid") as $repl) {
-                $value=$this->$repl;
-                if (preg_match ("/{%$repl}/",$mail_pattern)) {
-                    $attrs['mail']=str_replace ("{%$repl}",$value,$mail_pattern);
-                    $mail_pattern=$attrs['mail'];
+            foreach (array("sn", "givenName", "uid") as $repl) {
+                $value = $this->$repl;
+                if (preg_match("/{%$repl}/", $mail_pattern)) {
+                    $attrs['mail'] = str_replace("{%$repl}", $value, $mail_pattern);
+                    $mail_pattern = $attrs['mail'];
                 }
             }
 
             /* Add mail account data, if object is not in account state, yet
              */
-            if (!$this->is_account&&$this->acl_is_createable ()) {
-                $this->is_account=TRUE;
+            if (!$this->is_account && $this->acl_is_createable()) {
+                $this->is_account = TRUE;
             }
-        }
-        else {
-            $mail=$this->mail;
+        } else {
+            $mail = $this->mail;
         }
 
-        plugin::set_multi_edit_values ($attrs);
+        plugin::set_multi_edit_values($attrs);
 
         if (!$mail_pattern) {
-            $this->mail=$mail;
+            $this->mail = $mail;
         }
     }
 
     /*! \brief  ACL settings
      */
-    static function plInfo () {
-        return (array (
+    static function plInfo()
+    {
+        return (array(
             "plShortName"    => _("Mail"),
             "plDescription"  => _("User Mail Address"),
             "plSelfModify"   => TRUE,
-            "plDepends"      => array ("user"),           // This plugin depends on
+            "plDepends"      => array("user"),           // This plugin depends on
             "plPriority"     => 4,                        // Position in tabs
-            "plSection"      => array (
-                                   "personal"   => _("My account"),
+            "plSection"      => array(
+                "personal"   => _("My account"),
             ),
-            "plCategory"     => array ("users"),
-            "plOptions"      => array (),
-            "plRequirements" => array ('onFailureDisablePlugin'=>array (get_class ())),
-            "plProvidedAcls" => array (
-                                   "mail"       => _("Mail address"),
-                                   "alias"      => _("Mail aliases"),
+            "plCategory"     => array("users"),
+            "plOptions"      => array(),
+            "plRequirements" => array('onFailureDisablePlugin' => array(get_class())),
+            "plProvidedAcls" => array(
+                "mail"       => _("Mail address"),
+                "alias"      => _("Mail aliases"),
             ),
         ));
     }
 }
-
-// vim:tabstop=2:expandtab:shiftwidth=2:filetype=php:syntax:ruler:
-?>
