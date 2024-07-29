@@ -127,6 +127,7 @@ class mailAccount extends plugin
 
         if (!$this->multiple_support_active) {
             if (!$this->is_account && $this->parent === NULL) {
+                $theme = getThemeName();
                 switch ($theme) {
                     case 'classic':
                         $symbol = "<img alt='' src='images/small-error.png' align='middle'>";
