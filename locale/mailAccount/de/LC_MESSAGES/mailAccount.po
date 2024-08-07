@@ -27,7 +27,7 @@ msgstr ""
 #: personal/mailaddress/class_mailAccount.inc:476
 #: personal/mailaddress/class_mailAccount.inc:530
 msgid "Mail"
-msgstr "Mail"
+msgstr "E-Mail"
 
 #: admin/groups/mailaddress/class_groupMail.inc:163
 #: admin/groups/mailaddress/class_groupMail.inc:188
@@ -213,7 +213,7 @@ msgstr "Bitte Platzhalter für den Benutzerteil der Mail-Adresse verwenden."
 #: personal/mailaddress/class_mailAccount.inc:531
 #: personal/mailaddress/generic.tpl:6
 msgid "User Mail Address"
-msgstr "Mail-Adresse des Benutzers"
+msgstr "E-Mail-Adresse des Benutzers"
 
 #: personal/mailaddress/class_mailAccount.inc:536
 msgid "My account"
@@ -266,7 +266,7 @@ msgstr "Hinzufügen"
 
 #: personal/mailaddress/generic.tpl:58
 msgid "Users' Mail Aliases"
-msgstr "Mail"
+msgstr "E-Mail Aliase des Benutzer"
 
 #: personal/mailaddress/generic.tpl:61
 msgid "Mass editing of email aliases is not supported."
@@ -278,4 +278,4 @@ msgstr "Mail-Aliase des Benutzers"
 
 #: personal/mailaddress/copypaste.tpl:15
 msgid "Mail Aliases"
-msgstr "Mail-Aliase"
+msgstr "E-Mail-Aliase"

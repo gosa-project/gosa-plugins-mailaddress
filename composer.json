@@ -1,0 +1,24 @@
+{
+    "name": "gonicus/gosa2-plugin-mailaddress",
+    "description": "GOsa² plugin for mail addresses",
+    "type": "library",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "GosaMailPlugin\\" : "src/"
+        },
+        "files": [
+            "./src/functions.inc"
+        ]
+    },
+    "authors": [
+        {
+            "name": "GONICUS GmbH",
+            "email": "technik@gonicus.de"
+        }
+    ]
+}
+

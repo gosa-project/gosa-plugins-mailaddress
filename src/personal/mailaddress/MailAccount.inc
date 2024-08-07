@@ -35,7 +35,16 @@ Functions :
 
  */
 
-class mailAccount extends plugin
+namespace GosaMailPlugin\personal\mailaddress;
+
+use \plugin as Plugin;
+use \msgPool as msgPool;
+use \log as log;
+use \tests as tests;
+use \msg_dialog as msg_dialog;
+
+
+class MailAccount extends Plugin
 {
     /* Definitions */
     var $plHeadline = "Mail Address";
@@ -104,7 +113,6 @@ class mailAccount extends plugin
 
     function execute()
     {
-
         /* Call parent execute */
         $display = parent::execute();
 
@@ -200,9 +208,10 @@ class mailAccount extends plugin
         if ($this->multiple_support_active) {
             $smarty->assign("multi_mail", array_slice($this->multi_attrs_all['mail'], 1));
         }
-        return ($display . $smarty->fetch(get_template_path("generic.tpl", TRUE, dirname(__FILE__))));
-    }
 
+        $display = $display . $this->smarty_fetch(get_template_path("generic.tpl", TRUE, dirname(__FILE__)), "mailAccount");
+        return ($display);
+    }
 
     /* Save data to object */
     function save_object()

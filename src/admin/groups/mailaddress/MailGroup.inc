@@ -40,7 +40,18 @@ Functions :
  - delAlternate ($addresses)
 
  */
-class mailgroup extends plugin
+
+namespace GosaMailPlugin\admin\groups\mailaddress;
+
+use \plugin as Plugin;
+use \msgPool as msgPool;
+use \log as log;
+use \tests as tests;
+use \msg_dialog as msg_dialog;
+use \mailAddressSelect as mailAddressSelect;
+use \session as session;
+
+class MailGroup extends Plugin
 {
     /* Multiple edit */
     var $gosaMailForwardingAddress_Some = array();
@@ -69,6 +80,8 @@ class mailgroup extends plugin
     // Not tested yet
     var $uid = "";
     var $cn = "";
+
+    var $mailAddressSelect = null;
 
     function __construct(&$config, $dn = NULL, $base_object = NULL)
     {
@@ -272,7 +285,7 @@ class mailgroup extends plugin
         $smarty->assign("Forward_some", set_post($this->gosaMailForwardingAddress_Some));
         $smarty->assign("multiple_support", set_post($this->multiple_support_active));
 
-        $display .= $smarty->fetch(get_template_path('mailaddress.tpl', TRUE, dirname(__FILE__)));
+        $display .= $this->smarty_fetch(get_template_path('mailaddress.tpl', TRUE, dirname(__FILE__)), "mailAccount");
         return ($display);
     }
 
@@ -474,7 +487,7 @@ class mailgroup extends plugin
         $smarty->assign("gosaMailAlternateAddress", set_post($this->gosaMailAlternateAddress));
         $smarty->assign("gosaMailForwardingAddress", set_post($this->gosaMailForwardingAddress));
         $smarty->assign("mail", set_post($this->mail));
-        $display = $smarty->fetch(get_template_path('paste_mailaddress.tpl', TRUE, dirname(__FILE__)));
+        $display = $this->smarty_fetch(get_template_path('paste_mailaddress.tpl', TRUE, dirname(__FILE__)));
         $ret = array();
         $ret['string'] = $display;
         $ret['status'] = "";
