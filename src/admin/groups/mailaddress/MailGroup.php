@@ -85,7 +85,7 @@ class MailGroup extends Plugin
 
     function __construct(&$config, $dn = null, $base_object = null)
     {
-        parent::__construct($config, $dn);
+        parent::__construct($config, $dn, $base_object);
 
         /* Get attributes from parent object
          */
@@ -507,7 +507,6 @@ class MailGroup extends Plugin
         }
     }
 
-
     function PrepareForCopyPaste($source)
     {
         parent::PrepareForCopyPaste($source);
@@ -516,19 +515,29 @@ class MailGroup extends Plugin
         $this->gosaMailAlternateAddress = [];
     }
 
-
     /* Return plugin informations for acl handling  */
     static function plInfo()
     {
-        return (array("plShortName" => _("Mail"), "plDescription" => _("Group mail"), "plSelfModify" => false, "plDepends" => [], "plPriority" => 10, "plSection" => array("administration"), "plCategory" => array("groups"), "plProvidedAcls" => array("mail" => _("Mail address"), "gosaMailAlternateAddress" => _("Alternate addresses"), "gosaMailForwardingAddress" => _("Forwarding addresses"))));
+        return (array(
+            "plShortName" => _("Mail"),
+            "plDescription" => _("Group mail"),
+            "plSelfModify" => false,
+            "plDepends" => [],
+            "plPriority" => 10,
+            "plSection" => array("administration"),
+            "plCategory" => array("groups"),
+            "plProvidedAcls" => array(
+                "mail" => _("Mail address"),
+                "gosaMailAlternateAddress" => _("Alternate addresses"),
+                "gosaMailForwardingAddress" => _("Forwarding addresses")
+            )
+        ));
     }
-
 
     function multiple_execute()
     {
         return ($this->execute());
     }
-
 
     function init_multiple_support($attrs, $all)
     {
@@ -647,10 +656,12 @@ class MailGroup extends Plugin
 
     /*! \brief  Removes the given mail address from the forwarders
      */
-    function delForwarder($addresses)
+    function delForwarder(string $addresses)
     {
-        if (empty($addresses))
+        if (empty($addresses)) {
             return;
+        }
+
         $this->gosaMailForwardingAddress = array_remove_entries($addresses, $this->gosaMailForwardingAddress);
 
         /* Update multiple edit values too */
@@ -664,7 +675,7 @@ class MailGroup extends Plugin
     /*! \brief  Add given mail address to the list of alternate adresses ,
       .          check if this mal address is used, skip adding in this case
      */
-    function addAlternate($address)
+    function addAlternate(string $address)
     {
         if (empty($address)) {
             return "";
@@ -703,8 +714,9 @@ class MailGroup extends Plugin
      */
     function delAlternate($addresses)
     {
-        if (!count($addresses))
+        if (!count($addresses)) {
             return;
+        }
         $this->gosaMailAlternateAddress = array_remove_entries($addresses, $this->gosaMailAlternateAddress);
         $this->is_modified = true;
     }
