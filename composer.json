@@ -6,6 +6,9 @@
         "GPL-2.0-or-later"
     ],
     "version": "1.0.0",
+    "require": {
+        "php": ">=8.1"
+    },
     "autoload": {
         "psr-4": {
             "GosaMailPlugin\\" : "src/"
