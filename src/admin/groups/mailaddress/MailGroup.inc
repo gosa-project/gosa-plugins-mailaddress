@@ -22,7 +22,7 @@ Functions :
  - save_object ()
  - save ()
  - check ()
- - adapt_from_template ($dn,$skip=array())
+ - adapt_from_template ($dn,$skip=[])
  - make_name ($attrs)
  - getCopyDialog ()
  - saveCopyDialog ()
@@ -54,17 +54,17 @@ use \session as session;
 class MailGroup extends Plugin
 {
     /* Multiple edit */
-    public array $gosaMailForwardingAddress_Some = array();
+    public array $gosaMailForwardingAddress_Some = [];
     // Used in multiple edit
     /* Default values */
     public $mail = "";
     // Default mail address
-    public $gosaMailAlternateAddress = array();
+    public $gosaMailAlternateAddress = [];
     // Set default Alternate Mail Adresses to empty array
-    public $gosaMailForwardingAddress = array();
+    public $gosaMailForwardingAddress = [];
     // Forwarding also empty
     /* Internal */
-    public $view_logged = FALSE;
+    public $view_logged = false;
 
     /* GOsa mail account attributes filled with dummy values,
      * required due to gosaMailAccount objectclass requirements.
@@ -76,14 +76,14 @@ class MailGroup extends Plugin
     public $attributes = array("mail", "gosaMailServer", "gosaMailDeliveryMode", "gosaMailAlternateAddress", "gosaMailForwardingAddress");
 
     public $objectclasses = array("gosaMailAccount");
-    public $multiple_support = TRUE;
+    public $multiple_support = true;
     // Not tested yet
     public $uid = "";
     public $cn = "";
 
     public $mailAddressSelect = null;
 
-    function __construct(&$config, $dn = NULL, $base_object = NULL)
+    function __construct(&$config, $dn = null, $base_object = null)
     {
         parent::__construct($config, $dn);
 
@@ -107,7 +107,7 @@ class MailGroup extends Plugin
 
             /* Load attributes containing arrays */
             foreach (array("gosaMailAlternateAddress", "gosaMailForwardingAddress") as $val) {
-                $this->$val = array();
+                $this->$val = [];
                 if (isset($this->attrs["$val"]["count"])) {
                     for ($i = 0; $i < $this->attrs["$val"]["count"]; $i++) {
                         array_push($this->$val, $this->attrs["$val"][$i]);
@@ -125,7 +125,7 @@ class MailGroup extends Plugin
 
         /* Log view */
         if ($this->is_account && !$this->view_logged) {
-            $this->view_logged = TRUE;
+            $this->view_logged = true;
             new log("view", "groups/" . get_class($this), $this->dn);
         }
 
@@ -137,9 +137,9 @@ class MailGroup extends Plugin
 
             if (isset($_POST['modify_state'])) {
                 if ($this->is_account && $this->acl_is_removeable()) {
-                    $this->is_account = FALSE;
+                    $this->is_account = false;
                 } elseif (!$this->is_account && $this->acl_is_createable()) {
-                    $this->is_account = TRUE;
+                    $this->is_account = true;
                 }
             }
             if ($this->is_account) {
@@ -155,8 +155,8 @@ class MailGroup extends Plugin
          ****************/
 
         if (isset($_POST['mailAddressSelect_cancel'])) {
-            $this->mailAddressSelect = FALSE;
-            $this->dialog = FALSE;
+            $this->mailAddressSelect = false;
+            $this->dialog = false;
         }
 
         if (isset($_POST['mailAddressSelect_save'])) {
@@ -166,18 +166,18 @@ class MailGroup extends Plugin
                     $val = $entry['mail'][0];
                     if (!in_array_strict($val, $this->gosaMailAlternateAddress) && $val != $this->mail) {
                         $this->addForwarder($val);
-                        $this->is_modified = TRUE;
+                        $this->is_modified = true;
                     }
                 }
-                $this->mailAddressSelect = FALSE;
-                $this->dialog = FALSE;
+                $this->mailAddressSelect = false;
+                $this->dialog = false;
             } else {
                 msg_dialog::display(_("Error"), _("Please select an entry!"), ERROR_DIALOG);
             }
         }
 
         if ($this->mailAddressSelect instanceof mailAddressSelect) {
-            $used = array();
+            $used = [];
             $used['mail'] = array_values($this->gosaMailAlternateAddress);
             $used['mail'] = array_merge($used['mail'], array_values($this->gosaMailForwardingAddress));
             $used['mail'][] = $this->mail;
@@ -190,11 +190,11 @@ class MailGroup extends Plugin
         if (isset($_POST['add_forwarder'])) {
             if ($_POST['forward_address'] != "") {
                 $address = get_post('forward_address');
-                $valid = FALSE;
+                $valid = false;
                 if (!tests::is_email($address)) {
-                    if (!tests::is_email($address, TRUE)) {
+                    if (!tests::is_email($address, true)) {
                         if ($this->is_template) {
-                            $valid = TRUE;
+                            $valid = true;
                         } else {
                             msg_dialog::display(_("Error"), msgPool::invalid(_("Mail address"), "", "", "your-address@your-domain.com"), ERROR_DIALOG);
                         }
@@ -202,12 +202,12 @@ class MailGroup extends Plugin
                 } elseif ($address == $this->mail || in_array_strict($address, $this->gosaMailAlternateAddress)) {
                     msg_dialog::display(_("Error"), _("Cannot add primary address to the list of forwarders!"), ERROR_DIALOG);
                 } else {
-                    $valid = TRUE;
+                    $valid = true;
                 }
                 if ($valid) {
                     if ($this->acl_is_writeable("gosaMailForwardingAddress")) {
                         $this->addForwarder($address);
-                        $this->is_modified = TRUE;
+                        $this->is_modified = true;
                     }
                 }
             }
@@ -222,19 +222,19 @@ class MailGroup extends Plugin
          ****************/
 
         if (isset($_POST['add_alternate'])) {
-            $valid = FALSE;
+            $valid = false;
             if (!tests::is_email(get_post('alternate_address'))) {
                 if ($this->is_template) {
-                    if (!(tests::is_email(get_post('alternate_address'), TRUE))) {
+                    if (!(tests::is_email(get_post('alternate_address'), true))) {
                         msg_dialog::display(_("Error"), msgPool::invalid(_("Mail address"), "", "", "your-domain@your-domain.com"), ERROR_DIALOG);
                     } else {
-                        $valid = TRUE;
+                        $valid = true;
                     }
                 } else {
                     msg_dialog::display(_("Error"), msgPool::invalid(_("Mail address"), "", "", "your-domain@your-domain.com"), ERROR_DIALOG);
                 }
             } else {
-                $valid = TRUE;
+                $valid = true;
             }
             if ($valid && ($user = $this->addAlternate(get_post('alternate_address'))) != "") {
                 $ui = get_userinfo();
@@ -275,9 +275,9 @@ class MailGroup extends Plugin
          ******/
         foreach ($this->attributes as $attr) {
             if (in_array_strict($attr, $this->multi_boxes)) {
-                $smarty->assign("use_" . $attr, TRUE);
+                $smarty->assign("use_" . $attr, true);
             } else {
-                $smarty->assign("use_" . $attr, FALSE);
+                $smarty->assign("use_" . $attr, false);
             }
         }
 
@@ -285,7 +285,7 @@ class MailGroup extends Plugin
         $smarty->assign("Forward_some", set_post($this->gosaMailForwardingAddress_Some));
         $smarty->assign("multiple_support", set_post($this->multiple_support_active));
 
-        $display .= $this->smartyFetch(get_template_path('mailaddress.tpl', TRUE, dirname(__FILE__)), "mailAccount");
+        $display .= $this->smartyFetch(get_template_path('mailaddress.tpl', true, dirname(__FILE__)), "mailAccount");
         return ($display);
     }
 
@@ -301,8 +301,8 @@ class MailGroup extends Plugin
         parent::remove_from_parent();
 
         /* Zero arrays */
-        $this->attrs['gosaMailAlternateAddress'] = array();
-        $this->attrs['gosaMailForwardingAddress'] = array();
+        $this->attrs['gosaMailAlternateAddress'] = [];
+        $this->attrs['gosaMailForwardingAddress'] = [];
 
         $this->cleanup();
         $ldap = $this->config->get_ldap_link();
@@ -391,7 +391,7 @@ class MailGroup extends Plugin
     function check()
     {
         if (!$this->is_account)
-            return array();
+            return [];
         $ldap = $this->config->get_ldap_link();
 
         /* Call common method to give check the hook */
@@ -421,7 +421,7 @@ class MailGroup extends Plugin
     }
 
     /* Adapt from template, using 'dn' */
-    function adapt_from_template($dn, $skip = array())
+    function adapt_from_template($dn, $skip = [])
     {
         parent::adapt_from_template($dn, $skip);
 
@@ -438,7 +438,7 @@ class MailGroup extends Plugin
                 continue;
             }
 
-            $this->$val = array();
+            $this->$val = [];
             if (isset($this->attrs["$val"]["count"])) {
                 for ($i = 0; $i < $this->attrs["$val"]["count"]; $i++) {
                     $value = $this->attrs["$val"][$i];
@@ -487,8 +487,8 @@ class MailGroup extends Plugin
         $smarty->assign("gosaMailAlternateAddress", set_post($this->gosaMailAlternateAddress));
         $smarty->assign("gosaMailForwardingAddress", set_post($this->gosaMailForwardingAddress));
         $smarty->assign("mail", set_post($this->mail));
-        $display = $this->smarty_fetch(get_template_path('paste_mailaddress.tpl', TRUE, dirname(__FILE__)));
-        $ret = array();
+        $display = $this->smartyFetch(get_template_path('paste_mailaddress.tpl', true, dirname(__FILE__)));
+        $ret = [];
         $ret['string'] = $display;
         $ret['status'] = "";
         return ($ret);
@@ -513,14 +513,14 @@ class MailGroup extends Plugin
         parent::PrepareForCopyPaste($source);
 
         /* Reset alternate mail addresses */
-        $this->gosaMailAlternateAddress = array();
+        $this->gosaMailAlternateAddress = [];
     }
 
 
     /* Return plugin informations for acl handling  */
     static function plInfo()
     {
-        return (array("plShortName" => _("Mail"), "plDescription" => _("Group mail"), "plSelfModify" => FALSE, "plDepends" => array(), "plPriority" => 10, "plSection" => array("administration"), "plCategory" => array("groups"), "plProvidedAcls" => array("mail" => _("Mail address"), "gosaMailAlternateAddress" => _("Alternate addresses"), "gosaMailForwardingAddress" => _("Forwarding addresses"))));
+        return (array("plShortName" => _("Mail"), "plDescription" => _("Group mail"), "plSelfModify" => false, "plDepends" => [], "plPriority" => 10, "plSection" => array("administration"), "plCategory" => array("groups"), "plProvidedAcls" => array("mail" => _("Mail address"), "gosaMailAlternateAddress" => _("Alternate addresses"), "gosaMailForwardingAddress" => _("Forwarding addresses"))));
     }
 
 
@@ -534,14 +534,14 @@ class MailGroup extends Plugin
     {
         parent::init_multiple_support($attrs, $all);
 
-        $this->gosaMailForwardingAddress = array();
+        $this->gosaMailForwardingAddress = [];
         if (isset($attrs['gosaMailForwardingAddress'])) {
             for ($i = 0; $i < $attrs['gosaMailForwardingAddress']['count']; $i++) {
                 $this->gosaMailForwardingAddress[] = $attrs['gosaMailForwardingAddress'][$i];
             }
         }
 
-        $this->gosaMailForwardingAddress_Some = array();
+        $this->gosaMailForwardingAddress_Some = [];
         if (isset($all['gosaMailForwardingAddress'])) {
             for ($i = 0; $i < $all['gosaMailForwardingAddress']['count']; $i++) {
                 if (!in_array_strict($all['gosaMailForwardingAddress'][$i], $this->gosaMailForwardingAddress)) {
@@ -567,7 +567,7 @@ class MailGroup extends Plugin
         $mail_pattern = $this->mail;
 
         if (!empty($mail_pattern)) {
-            if ((!tests::is_email($mail_pattern, TRUE)) || (!preg_match('/^.*{%cn}.*@.*$/i', $mail_pattern))) {
+            if ((!tests::is_email($mail_pattern, true)) || (!preg_match('/^.*{%cn}.*@.*$/i', $mail_pattern))) {
                 $message[] = msgPool::invalid(_("Mail address pattern"), "", "", "{%cn}@your-domain.com") . "<br><br><br>" . _("Please make use of the {%cn} placeholder for the group part of the mail address.");
             }
         }
@@ -587,7 +587,7 @@ class MailGroup extends Plugin
 
     function set_multi_edit_values($attrs)
     {
-        $forward = array();
+        $forward = [];
         foreach ($attrs['Forward_some'] as $addr) {
             if (in_array_strict($addr, $this->gosaMailForwardingAddress)) {
                 $forward[] = $addr;
@@ -609,7 +609,7 @@ class MailGroup extends Plugin
             /* Add mail account data, if object is not in account state, yet
              */
             if (!$this->is_account && $this->acl_is_createable()) {
-                $this->is_account = TRUE;
+                $this->is_account = true;
             }
         } else {
             $mail = $this->mail;
@@ -641,7 +641,7 @@ class MailGroup extends Plugin
 
         sort($this->gosaMailForwardingAddress);
         reset($this->gosaMailForwardingAddress);
-        $this->is_modified = TRUE;
+        $this->is_modified = true;
     }
 
 
@@ -657,7 +657,7 @@ class MailGroup extends Plugin
         if ($this->multiple_support_active) {
             $this->gosaMailForwardingAddress_Some = array_remove_entries($addresses, $this->gosaMailForwardingAddress_Some);
         }
-        $this->is_modified = TRUE;
+        $this->is_modified = true;
     }
 
 
@@ -693,7 +693,7 @@ class MailGroup extends Plugin
 
         sort($this->gosaMailAlternateAddress);
         reset($this->gosaMailAlternateAddress);
-        $this->is_modified = TRUE;
+        $this->is_modified = true;
 
         return ("");
     }
@@ -706,6 +706,6 @@ class MailGroup extends Plugin
         if (!count($addresses))
             return;
         $this->gosaMailAlternateAddress = array_remove_entries($addresses, $this->gosaMailAlternateAddress);
-        $this->is_modified = TRUE;
+        $this->is_modified = true;
     }
 }
