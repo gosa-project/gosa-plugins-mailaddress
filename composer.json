@@ -16,9 +16,17 @@
     },
     "authors": [
         {
-            "name": "GONICUS GmbH",
-            "email": "technik@gonicus.de"
+            "name": "Mike Gabriel",
+            "role": "Developer"
+        },
+        {
+            "name": "Benjamin Zapiec",
+            "role": "Developer",
+            "homepage": "https://www.gonicus.de"
         }
-    ]
+    ],
+    "support": {
+        "issues" : "https://github.com/gosa-project/gosa-plugins-mailaddress"
+    }
 }
 
