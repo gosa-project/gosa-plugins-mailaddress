@@ -11,7 +11,7 @@
             "GosaMailPlugin\\" : "src/"
         },
         "files": [
-            "./src/functions.inc"
+            "./src/functions.php"
         ]
     },
     "authors": [
