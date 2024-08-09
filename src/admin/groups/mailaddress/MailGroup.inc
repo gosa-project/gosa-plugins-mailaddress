@@ -54,34 +54,34 @@ use \session as session;
 class MailGroup extends Plugin
 {
     /* Multiple edit */
-    var $gosaMailForwardingAddress_Some = array();
+    public array $gosaMailForwardingAddress_Some = array();
     // Used in multiple edit
     /* Default values */
-    var $mail = "";
+    public $mail = "";
     // Default mail address
-    var $gosaMailAlternateAddress = array();
+    public $gosaMailAlternateAddress = array();
     // Set default Alternate Mail Adresses to empty array
-    var $gosaMailForwardingAddress = array();
+    public $gosaMailForwardingAddress = array();
     // Forwarding also empty
     /* Internal */
-    var $view_logged = FALSE;
+    public $view_logged = FALSE;
 
     /* GOsa mail account attributes filled with dummy values,
      * required due to gosaMailAccount objectclass requirements.
      */
-    var $gosaMailServer = "NULL";
-    var $gosaMailDeliveryMode = "[         ]";
+    public $gosaMailServer = "NULL";
+    public $gosaMailDeliveryMode = "[         ]";
     //
     /* attribute list for save action */
-    var $attributes = array("mail", "gosaMailServer", "gosaMailDeliveryMode", "gosaMailAlternateAddress", "gosaMailForwardingAddress");
+    public $attributes = array("mail", "gosaMailServer", "gosaMailDeliveryMode", "gosaMailAlternateAddress", "gosaMailForwardingAddress");
 
-    var $objectclasses = array("gosaMailAccount");
-    var $multiple_support = TRUE;
+    public $objectclasses = array("gosaMailAccount");
+    public $multiple_support = TRUE;
     // Not tested yet
-    var $uid = "";
-    var $cn = "";
+    public $uid = "";
+    public $cn = "";
 
-    var $mailAddressSelect = null;
+    public $mailAddressSelect = null;
 
     function __construct(&$config, $dn = NULL, $base_object = NULL)
     {
@@ -285,7 +285,7 @@ class MailGroup extends Plugin
         $smarty->assign("Forward_some", set_post($this->gosaMailForwardingAddress_Some));
         $smarty->assign("multiple_support", set_post($this->multiple_support_active));
 
-        $display .= $this->smarty_fetch(get_template_path('mailaddress.tpl', TRUE, dirname(__FILE__)), "mailAccount");
+        $display .= $this->smartyFetch(get_template_path('mailaddress.tpl', TRUE, dirname(__FILE__)), "mailAccount");
         return ($display);
     }
 

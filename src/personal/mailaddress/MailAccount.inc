@@ -47,31 +47,30 @@ use \msg_dialog as msg_dialog;
 class MailAccount extends Plugin
 {
     /* Definitions */
-    var $plHeadline = "Mail Address";
-    var $plDescription = "Manage user mail address";
-    var $view_logged = false;
-    var $is_account = false;
-    var $initially_was_account = false;
+    public $plHeadline = "Mail Address";
+    public $plDescription = "Manage user mail address";
+    public $view_logged = false;
+    public $is_account = false;
+    public $initially_was_account = false;
 
     /* GOsa mail attributes */
-    var $mail = "";
-    var $alias = array();
-    var $aliasWidget;
+    public $mail = "";
+    public $alias = [];
+    public $aliasWidget;
 
     /* GOsa mail account attributes filled with dummy values,
      * required due to gosaMailAccount objectclass requirements.
      */
-    var $gosaMailServer = "NULL";
-    var $gosaMailDeliveryMode = "[         ]";
+    public $gosaMailServer = "NULL";
+    public $gosaMailDeliveryMode = "[         ]";
 
     /* Used LDAP attributes && classes */
-    var $attributes = array("mail", "alias", "gosaMailServer", "gosaMailDeliveryMode",);
-    var $objectclasses = array("gosaMailAccount");
-    var $multiple_support = TRUE;
+    public $attributes = ["mail", "alias", "gosaMailServer", "gosaMailDeliveryMode"];
+    public $objectclasses = ["gosaMailAccount"];
+    public $multiple_support = true;
 
-    var $uid = "";
-    var $cn = "";
-
+    public $uid = "";
+    public $cn = "";
 
     /*! \brief  Initialize the mailAccount
      */
@@ -118,7 +117,7 @@ class MailAccount extends Plugin
 
         /* Log view */
         if ($this->is_account && !$this->view_logged) {
-            $this->view_logged = TRUE;
+            $this->view_logged = true;
             new log("view", "users/" . get_class($this), $this->dn);
         }
 
@@ -130,7 +129,7 @@ class MailAccount extends Plugin
             if ($this->is_account && $this->acl_is_removeable()) {
                 $this->is_account = false;
             } elseif (!$this->is_account && $this->acl_is_createable()) {
-                $this->is_account = TRUE;
+                $this->is_account = true;
             }
         }
 
@@ -209,7 +208,7 @@ class MailAccount extends Plugin
             $smarty->assign("multi_mail", array_slice($this->multi_attrs_all['mail'], 1));
         }
 
-        $display = $display . $this->smarty_fetch(get_template_path("generic.tpl", TRUE, dirname(__FILE__)), "mailAccount");
+        $display = $display . $this->smartyFetch(get_template_path("generic.tpl", true, dirname(__FILE__)), "mailAccount");
         return ($display);
     }
 
@@ -359,7 +358,7 @@ class MailAccount extends Plugin
         }
 
         if ($this->is_template) {
-            if (!tests::is_email($mail, TRUE)) {
+            if (!tests::is_email($mail, true)) {
                 $message[] = msgPool::invalid(_("Mail address"), "", "", "{%givenName}.{%sn}@your-domain.com");
             }
         } else {
@@ -463,7 +462,7 @@ class MailAccount extends Plugin
         $smarty->assign("mail", $this->mail);
         $smarty->assign("aliasWidget", $this->aliasWidget->render());
 
-        $str = $smarty->fetch(get_template_path("copypaste.tpl", TRUE, dirname(__FILE__)));
+        $str = $smarty->fetch(get_template_path("copypaste.tpl", true, dirname(__FILE__)));
 
         $ret = array();
         $ret['status'] = "";
@@ -506,7 +505,7 @@ class MailAccount extends Plugin
         $mail_pattern = $this->mail;
 
         if (!empty($mail_pattern)) {
-            if ((!tests::is_email($mail_pattern, TRUE)) || (!preg_match('/^.*({%uid}|{%givenName}|{%sn}|{%cn}).*@.*$/i', $mail_pattern))) {
+            if ((!tests::is_email($mail_pattern, true)) || (!preg_match('/^.*({%uid}|{%givenName}|{%sn}|{%cn}).*@.*$/i', $mail_pattern))) {
                 $message[] = msgPool::invalid(_("Mail address pattern"), "", "", "{%givenName}.{%sn}@your-domain.com") . "<br><br><br>" . _("Please make use of placeholders for the user part of the mail address.");
             }
         }
@@ -537,7 +536,7 @@ class MailAccount extends Plugin
             /* Add mail account data, if object is not in account state, yet
              */
             if (!$this->is_account && $this->acl_is_createable()) {
-                $this->is_account = TRUE;
+                $this->is_account = true;
             }
         } else {
             $mail = $this->mail;
@@ -557,7 +556,7 @@ class MailAccount extends Plugin
         return (array(
             "plShortName"    => _("Mail"),
             "plDescription"  => _("User Mail Address"),
-            "plSelfModify"   => TRUE,
+            "plSelfModify"   => true,
             "plDepends"      => array("user"),           // This plugin depends on
             "plPriority"     => 4,                        // Position in tabs
             "plSection"      => array(
