@@ -269,7 +269,7 @@ class MailAccount extends Plugin
         /* Add "view" to logging class */
         new log("remove", "users/" . get_class($this), $this->dn, array_keys($this->attrs), $ldap->get_error());
         if (!$ldap->success()) {
-            msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, get_class()));
+            msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, __CLASS__));
         }
 
         /* Optionally execute a command after we are done */
@@ -312,7 +312,7 @@ class MailAccount extends Plugin
         $ldap->modify($this->attrs);
 
         if (!$ldap->success()) {
-            msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, get_class()));
+            msg_dialog::display(_("LDAP error"), msgPool::ldaperror($ldap->get_error(), $this->dn, LDAP_MOD, __CLASS__));
         }
 
         /* Log last action */
@@ -564,7 +564,7 @@ class MailAccount extends Plugin
             ),
             "plCategory"     => array("users"),
             "plOptions"      => array(),
-            "plRequirements" => array('onFailureDisablePlugin' => array(get_class())),
+            "plRequirements" => array('onFailureDisablePlugin' => array(__CLASS__)),
             "plProvidedAcls" => array(
                 "mail"       => _("Mail address"),
                 "alias"      => _("Mail aliases"),
